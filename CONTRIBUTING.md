@@ -10,8 +10,6 @@ Add instructions or ideas on how to contribute to the project.
 The basic idea is that we can integrate GitHub with Jira by using Jira issue keys in our branches, pull request titles, and commit messages.
 [This](https://support.atlassian.com/jira-software-cloud/docs/reference-issues-in-your-development-work/) article explains how.
 
--[] 
-
 </details>
 
 
