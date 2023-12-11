@@ -1,6 +1,6 @@
 ### Contribution guide and brainstorm
 
-Add instructions or ideas on how the team can contribute to this file.
+Add instructions or ideas on how to contribute to the project.
 
 <hr>
 <details>
@@ -22,5 +22,10 @@ The basic idea is that we can integrate GitHub with Jira by using Jira issue key
 I have written a lightweight test runner we can use. I'll write a user's guide for it.
 </details>
 
+<details>
+<summary>IDEA: Use Google's shell scripting style guide</summary>
 
+### How?
+Follow their [style guide](https://google.github.io/styleguide/shellguide.html)
+</details>
 
