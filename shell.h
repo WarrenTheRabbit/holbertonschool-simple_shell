@@ -3,6 +3,9 @@
 #include <stdio.h>
 #define TRUE 1
 
+/* Shell status codes - these are returned by the evaluate stage of the REPL */
+#define EXIT_COMMAND 0
+
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:

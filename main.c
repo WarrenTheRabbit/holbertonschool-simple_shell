@@ -13,7 +13,7 @@ int main(void)
 		command = readline(input_buffer);
 		status = evaluate(command);
 		
-		if (status == 0)
+		if (status == EXIT_COMMAND)
 		{
 			close_input_buffer(input_buffer);
 			exit(EXIT_SUCCESS);

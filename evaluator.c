@@ -15,7 +15,7 @@ int evaluate(char *str)
 {
 	if (is_exit(str))
 	{
-		return (0);
+		return (EXIT_COMMAND);
 	}
 	return (1);
 
