@@ -11,8 +11,10 @@
  * 	getline(char **lineptr, size_t *n, FILE *stream) reads up to an including
  * 	the newline character. Unlike 'gets' and 'fgets', it does a read that is safe
  * 	and complete: it uses realloc to resize the lineptr buffer to ensure there
- * 	is enought room to store the complete line. It won't trunate the read or 
- * 	access invalid memory.
+ * 	is enough room to store the complete line. It won't trunate the read or 
+ * 	access invalid memory. If the buffer length is longer than the input, getline
+ * 	will use the existing buffer space and null terminate the string, leaving the
+ * 	buffer beyond it untouched.
  *
  * Return: an InputBuffer object
  */
@@ -32,7 +34,7 @@ InputBuffer *new_input_buffer()
  * @input_buffer - a wrapper for the state needed by getline()
  * Return: nothing
  */
-void readline(InputBuffer *input_buffer)
+char *readline(InputBuffer *input_buffer)
 {
 	ssize_t bytes_read = getline(
 					&(input_buffer->buffer), 
@@ -40,9 +42,11 @@ void readline(InputBuffer *input_buffer)
 					stdin
 			);
 
-	/* Discard the trailing newline */
+	/* Discard the trailing newline by replacing it with null character. */
 	input_buffer->input_length = bytes_read - 1;
 	input_buffer->buffer[bytes_read - 1] = 0;
+
+	return (input_buffer->buffer);
 }
 
 /**

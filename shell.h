@@ -26,5 +26,5 @@ typedef struct {
 
 void print_prompt();
 InputBuffer *new_input_buffer();
-void readline(InputBuffer *input_buffer);
+char *readline(InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
