@@ -2,7 +2,7 @@
 These are taken from [the project page](https://intranet.hbtn.io/projects/2174).
 | Requirement  | Currently enforced by CI/CD? | Enforce how? | 
 | --- | --- | --- |
-| Compile with options `-Wall -Werror -Wextra -pedantic -std=gnu89` | No | Use flags via Makefile |
+| Compile as `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh` | No | Use flags via Makefile |
 | End **files** with newline | No | Makefile runs a script |
 | No more than five functions per **file** | No | Makefile runs a script |
 | All headers should be include guarded | No| Makefile runs a script |
