@@ -3,8 +3,10 @@
 
 int main(void)
 {
+	int status;
+	char *input;
 	InputBuffer *input_buffer = new_input_buffer();
-
+	
 	while (TRUE)
 	{
 		print_prompt();
@@ -17,7 +19,7 @@ int main(void)
 		}
 		else
 		{
-			printf("hsh: %s :command not found\n", input_buffer->buffer);
+			print_command_not_found_error(command);
 		}
 	}
 }
