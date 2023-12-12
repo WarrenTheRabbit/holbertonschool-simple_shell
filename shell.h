@@ -5,7 +5,7 @@
 
 /* Shell status codes - these are returned by the evaluate stage of the REPL */
 #define EXIT_COMMAND 0
-
+#define COMMAND_NOT_FOUND 127
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:

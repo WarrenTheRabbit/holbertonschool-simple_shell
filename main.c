@@ -18,7 +18,7 @@ int main(void)
 			close_input_buffer(input_buffer);
 			exit(EXIT_SUCCESS);
 		}
-		else
+		else if (status == COMMAND_NOT_FOUND)
 		{
 			print_command_not_found_error(command);
 		}

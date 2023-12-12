@@ -17,7 +17,7 @@ int evaluate(char *str)
 	{
 		return (EXIT_COMMAND);
 	}
-	return (1);
+	return (COMMAND_NOT_FOUND);
 
 }
 
