@@ -4,15 +4,16 @@
 int main(void)
 {
 	int status;
-	char *input;
+	char *command;
 	InputBuffer *input_buffer = new_input_buffer();
 	
 	while (TRUE)
 	{
 		print_prompt();
-		readline(input_buffer);
-
-		if (strcmp(input_buffer->buffer, "exit") == 0)
+		command = readline(input_buffer);
+		status = evaluate(command);
+		
+		if (status == 0)
 		{
 			close_input_buffer(input_buffer);
 			exit(EXIT_SUCCESS);
