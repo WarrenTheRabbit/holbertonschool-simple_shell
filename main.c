@@ -22,5 +22,9 @@ int main(void)
 		{
 			print_command_not_found_error(command);
 		}
+		else
+		{
+			printf("ERROR - unhandled case");
+		}
 	}
 }
