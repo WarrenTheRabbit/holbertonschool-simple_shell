@@ -22,6 +22,10 @@ int main(void)
 		{
 			print_command_not_found_error(command);
 		}
+		else if (status == ENV_COMMAND)
+		{
+			printenv_with_environ();
+		}
 		else
 		{
 			printf("ERROR - unhandled case");

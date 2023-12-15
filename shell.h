@@ -1,11 +1,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #define TRUE 1
 
 /* Shell status codes - these are returned by the evaluate stage of the REPL */
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
+#define ENV_COMMAND 10
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:
@@ -29,7 +32,9 @@ typedef struct {
 
 void print_prompt(void);
 void print_command_not_found_error(char *str);
+void printenv_with_environ(void);
 InputBuffer *new_input_buffer(void);
 char *readline(InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
+int executor(char *command);
