@@ -18,7 +18,7 @@
  *
  * Return: an InputBuffer object
  */
-InputBuffer *new_input_buffer()
+InputBuffer *new_input_buffer(void)
 {
 	InputBuffer *input_buffer = malloc(sizeof(InputBuffer));
 	input_buffer->buffer = NULL;
