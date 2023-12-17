@@ -34,6 +34,10 @@ int main(void)
 				exit(EXIT_SUCCESS);
 				break;
 
+			case EXECUTABLE_COMMAND:
+				printf("%s is exeuctable\n", command);
+				break;
+
 			default:
 				printf("unhandled case\n");
 				break;

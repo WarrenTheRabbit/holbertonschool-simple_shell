@@ -29,6 +29,21 @@ int is_eof(char *str)
 	return (0);
 }
 
+int is_executable(char *str)
+{
+	struct stat file_stat;
+
+	if (stat(str, &file_stat) < 0)
+		return (0);
+
+	if (!S_ISREG(file_stat.st_mode))
+		return (0);
+
+	if (file_stat.st_mode & S_IXUSR)
+		return (1);
+
+	return (0);
+}
 
 int evaluate(char *str)
 {
@@ -40,6 +55,8 @@ int evaluate(char *str)
 		return (ENV_COMMAND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
+	else if (is_executable(str))
+		return (EXECUTABLE_COMMAND);
 	
 	return (COMMAND_NOT_FOUND);
 }
