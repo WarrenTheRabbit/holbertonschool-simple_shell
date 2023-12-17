@@ -10,7 +10,10 @@ int main(void)
 	
 	while (TRUE)
 	{
-		print_prompt();
+		if (isatty(STDIN_FILENO))
+		{
+			print_prompt();
+		}
 		command = readline(stream, input_buffer);
 		status = evaluate(command);
 		
@@ -31,6 +34,9 @@ int main(void)
 
 			case EOF_ENCOUNTERED:
 				close_input_buffer(input_buffer);
+				/* If a prompt was printed, print a newline. */
+				if (isatty(STDIN_FILENO))
+						printf("\n");
 				exit(EXIT_SUCCESS);
 				break;
 
