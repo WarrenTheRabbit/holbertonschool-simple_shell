@@ -9,6 +9,7 @@
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
 #define ENV_COMMAND 10
+#define EOF_ENCOUNTERED -1
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:
@@ -34,7 +35,7 @@ void print_prompt(void);
 void print_command_not_found_error(char *str);
 void printenv_with_environ(void);
 InputBuffer *new_input_buffer(void);
-char *readline(InputBuffer *input_buffer);
+char *readline(FILE *stream, InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
 int executor(char *command);
