@@ -29,6 +29,11 @@ int main(void)
 				printenv_with_environ();
 				break;
 
+			case EOF_ENCOUNTERED:
+				close_input_buffer(input_buffer);
+				exit(EXIT_SUCCESS);
+				break;
+
 			default:
 				printf("unhandled case\n");
 				break;

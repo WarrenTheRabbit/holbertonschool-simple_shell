@@ -19,18 +19,29 @@ int is_env(char *str)
 	return (0);
 }
 
+
+int is_eof(char *str)
+{
+	if (!str)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+
 int evaluate(char *str)
 {
-	if (is_exit(str))
-	{
+	if (is_eof(str)) /*Must guard against NULL first with this check */
+		return (EOF_ENCOUNTERED);
+	else if (is_exit(str))
 		return (EXIT_COMMAND);
-	}
 	else if (is_env(str))
-	{
 		return (ENV_COMMAND);
-	}
+	else if (is_eof(str))
+		return (EOF_ENCOUNTERED);
+	
 	return (COMMAND_NOT_FOUND);
-
 }
 
 
