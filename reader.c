@@ -34,12 +34,12 @@ InputBuffer *new_input_buffer(void)
  * @input_buffer - a wrapper for the state needed by getline()
  * Return: nothing
  */
-char *readline(InputBuffer *input_buffer)
+char *readline(FILE *stream, InputBuffer *input_buffer)
 {
 	ssize_t bytes_read = getline(
 					&(input_buffer->buffer), 
 					&(input_buffer->buffer_length),
-					stdin
+					stream
 			);
 
 	/* Discard the trailing newline by replacing it with null character. */

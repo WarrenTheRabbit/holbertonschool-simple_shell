@@ -5,12 +5,13 @@ int main(void)
 {
 	int status;
 	char *command;
+	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 	
 	while (TRUE)
 	{
 		print_prompt();
-		command = readline(input_buffer);
+		command = readline(stream, input_buffer);
 		status = evaluate(command);
 		
 		if (status == EXIT_COMMAND)
