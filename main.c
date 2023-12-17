@@ -35,7 +35,7 @@ int main(void)
 				break;
 
 			case EXECUTABLE_COMMAND:
-				printf("%s is exeuctable\n", command);
+				execute(command);	
 				break;
 
 			default:

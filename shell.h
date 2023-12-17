@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <sys/wait.h>
+
+
 #define TRUE 1
 
 /* Shell status codes - these are returned by the evaluate stage of the REPL */
@@ -40,3 +43,4 @@ char *readline(FILE *stream, InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
 int executor(char *command);
+void execute(char *command);
