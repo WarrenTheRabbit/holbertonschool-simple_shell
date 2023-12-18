@@ -1,13 +1,10 @@
 #include "shell.h"
 
-void execute(char *command)
+void execute(char **args)
 {
 	int status;
-	char *args[2];
 	pid_t pid;
 
-	args[0] = command;
-	args[1] = NULL;
 	pid = fork();
 
 	if (pid == -1)

@@ -5,6 +5,7 @@ int main(void)
 {
 	int status;
 	char *command;
+	char *args[10];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 	
@@ -15,7 +16,16 @@ int main(void)
 			print_prompt();
 		}
 		command = readline(stream, input_buffer);
-		parse(command);
+		initialise_command_array(command, args, 10);
+		
+
+
+		/**
+		 * Commented out because segmentation fault resulted in non-interactive mode.
+		 *
+		 * parse(command); 
+		 *
+		 */
 		status = evaluate(command);
 		
 		switch (status)
@@ -42,7 +52,7 @@ int main(void)
 				break;
 
 			case EXECUTABLE_COMMAND:
-				execute(command);	
+				execute(args);	
 				break;
 
 			default:
