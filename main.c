@@ -8,7 +8,7 @@ int main(void)
 	char *args[10];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
-	
+
 	while (TRUE)
 	{
 		if (isatty(STDIN_FILENO))
@@ -17,7 +17,6 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		initialise_command_array(command, args, 10);
-		
 
 
 		/**
