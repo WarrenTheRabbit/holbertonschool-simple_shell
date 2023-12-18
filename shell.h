@@ -44,3 +44,5 @@ void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
 int executor(char *command);
 void execute(char *command);
+void trim(char * const string);
+void parse(char *command);

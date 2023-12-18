@@ -15,6 +15,7 @@ int main(void)
 			print_prompt();
 		}
 		command = readline(stream, input_buffer);
+		parse(command);
 		status = evaluate(command);
 		
 		switch (status)
