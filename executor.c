@@ -16,7 +16,13 @@ void execute(char **args)
 		/* Child process is executing. */
 		if (execve(args[0], args, NULL) == -1)
 		{
-			perror("execvp");
+			/* print an error message */
+			write(STDERR_FILENO, "Command not found: ", 19);
+			write(STDERR_FILENO, args[0], strlen(args[0]));
+			write(STDERR_FILENO, "\n", 1);
+
+			/* exit to avoid continuing with incorrect execution */
+			exit(EXIT_FAILURE);
 		}
 	}
 	else 

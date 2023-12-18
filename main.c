@@ -17,6 +17,13 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		initialise_command_array(command, args, 10);
+
+		/**
+		 * debugging output: print the command before executing
+		 */
+		write(STDOUT_FILENO, "Command: ", 9);
+		write(STDOUT_FILENO, args[0], strlen(args[0]));
+		write(STDOUT_FILENO, "\n", 1);
 		
 
 
@@ -47,7 +54,7 @@ int main(void)
 				close_input_buffer(input_buffer);
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
-						printf("\n");
+						write(STDOUT_FILENO, "\n", 1);
 				exit(EXIT_SUCCESS);
 				break;
 
@@ -56,7 +63,7 @@ int main(void)
 				break;
 
 			default:
-				printf("unhandled case\n");
+				write(STDOUT_FILENO, "Unhandled case\n", 15);
 				break;
 		}
 	}
