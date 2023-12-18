@@ -24,9 +24,5 @@ void execute(char **args)
 	else 
 	{
 		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-		{
-			write(1, "Command not found or execution failed. \n", 39);
-		}
 	}
 }

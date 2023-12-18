@@ -31,7 +31,7 @@ int main(void)
 		{
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
-				exit(2);
+				exit(EXIT_SUCCESS);
 				break;
 
 			case COMMAND_NOT_FOUND:
