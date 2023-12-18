@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 void trim_spaces(char *str)
 {
