@@ -83,7 +83,7 @@ int evaluate(char *str)
 		/* check for spaces-only or empty string */
 		if (strspn(str, " \t\n") == strlen(str) || isspace(str[0]) || isspace(str[strlen(str) - 1]))
 		{
-			write(1, "Empty command or command surrounded by spaces\n", 47);
+			printf("Empty command or command surrounded by spaces\n");
 			return (COMMAND_NOT_FOUND);
 		}
 		return (EXECUTABLE_COMMAND);
