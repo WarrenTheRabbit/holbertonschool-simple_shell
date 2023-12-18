@@ -1,3 +1,5 @@
+#include <ctype.h>
+
 void trim(char * const a)
 {
     char *p = a, *q = a;
