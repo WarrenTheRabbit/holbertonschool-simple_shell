@@ -8,9 +8,6 @@ int main(void)
 	char *args[10];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
-	
-	/* print environment variables before the main loop */
-	printenv_with_environ();
 
 	while (TRUE)
 	{
@@ -20,16 +17,7 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		initialise_command_array(command, args, 10);
-
-		/**
-		 * debugging output: print the command before executing
-		 */
-		write(STDOUT_FILENO, "Command: ", 9);
-		write(STDOUT_FILENO, args[0], strlen(args[0]));
-		write(STDOUT_FILENO, "\n", 1);
 		
-
-
 		/**
 		 * Commented out because segmentation fault resulted in non-interactive mode.
 		 *
@@ -50,13 +38,14 @@ int main(void)
 				break;
 
 			case ENV_COMMAND:
+				printenv_with_environ();
 				break;
 
 			case EOF_ENCOUNTERED:
 				close_input_buffer(input_buffer);
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
-						write(STDOUT_FILENO, "\n", 1);
+						printf("\n");
 				exit(EXIT_SUCCESS);
 				break;
 
@@ -65,7 +54,7 @@ int main(void)
 				break;
 
 			default:
-				write(STDOUT_FILENO, "Unhandled case\n", 15);
+				printf("unhandled case\n");
 				break;
 		}
 	}
