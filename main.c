@@ -32,7 +32,7 @@ int main(void)
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
 				free_input_buffer(input_buffer);/* free allocated memory */
-				exit(EXIT_SUCCESS);
+				exit(2);
 				break;
 
 			case COMMAND_NOT_FOUND:
@@ -48,7 +48,7 @@ int main(void)
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
 						printf("\n");
-				exit(EXIT_SUCCESS);
+				exit(2);
 				break;
 
 			case EXECUTABLE_COMMAND:
