@@ -56,16 +56,7 @@ int evaluate(char *str)
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
-	{
-		/**
-		 * debugging output
-		 */
-		write(STDOUT_FILENO, "Command: ", 9);
-		write(STDOUT_FILENO, str, strlen(str));
-		write(STDOUT_FILENO, "\n", 1);
-
 		return (EXECUTABLE_COMMAND);
-	}
 	
 	return (COMMAND_NOT_FOUND);
 }
