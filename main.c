@@ -9,6 +9,9 @@ int main(void)
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 	
+	/* print environment variables before the main loop */
+	printenv_with_environ();
+
 	while (TRUE)
 	{
 		if (isatty(STDIN_FILENO))
@@ -47,7 +50,6 @@ int main(void)
 				break;
 
 			case ENV_COMMAND:
-				printenv_with_environ();
 				break;
 
 			case EOF_ENCOUNTERED:
