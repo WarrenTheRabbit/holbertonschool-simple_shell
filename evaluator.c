@@ -1,5 +1,25 @@
 #include "shell.h"
 
+void trim_spaces(char *str)
+{
+	int start = 0, end = strlen(str) - 1;
+
+	/* trim leading spaces */
+	while (isspace(str[start]))
+	{
+		start++;
+	}
+	/* trim trailing spaces */
+	while (end > start && isspace(str[end]))
+	{
+		end--;
+	}
+	/* move the null terminator to the end */
+	str[end + 1] = '\0';
+	/* move the trimmed string to the beginning */
+	memmove(str, str + start, end - start + 2);
+}
+
 int is_exit(char *str)
 {
 	if (strcmp(str, "exit") == 0)
@@ -57,6 +77,8 @@ int evaluate(char *str)
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
 	{
+		/* trim spaces before checking executability */
+		trim_spaces(str);
 		/* check for spaces-only or empty string */
 		if (strspn(str, " \t\n") == strlen(str))
 		{

@@ -30,6 +30,7 @@ int main(void)
 		{
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
+				free_input_buffer(input_buffer);/* free allocated memory */
 				exit(EXIT_SUCCESS);
 				break;
 
