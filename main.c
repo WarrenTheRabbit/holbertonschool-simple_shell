@@ -31,7 +31,6 @@ int main(void)
 		{
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
-				free_input_buffer(input_buffer);/* free allocated memory */
 				exit(2);
 				break;
 
@@ -47,7 +46,7 @@ int main(void)
 				close_input_buffer(input_buffer);
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
-						printf("\n");
+					printf("\n");
 				exit(2);
 				break;
 
