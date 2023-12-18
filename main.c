@@ -47,7 +47,7 @@ int main(void)
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
 					printf("\n");
-				exit(2);
+				exit(EXIT_SUCCESS);
 				break;
 
 			case EXECUTABLE_COMMAND:
