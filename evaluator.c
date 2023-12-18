@@ -65,6 +65,7 @@ int evaluate(char *str)
 		write(STDOUT_FILENO, "\n", 1);
 
 		return (EXECUTABLE_COMMAND);
+	}
 	
 	return (COMMAND_NOT_FOUND);
 }
