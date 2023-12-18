@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 int main(void)
 {
 	int status;
@@ -16,50 +15,58 @@ int main(void)
 			print_prompt();
 		}
 		command = readline(stream, input_buffer);
+		if (!command)
+		{
+			return (EXIT_FAILURE);
+		}
+		parse(command);
 		initialise_command_array(command, args, 10);
-
 
 		/**
 		 * Commented out because segmentation fault resulted in non-interactive mode.
 		 *
-		 * parse(command); 
+		 * parse(command);
 		 *
 		 */
 		status = evaluate(command);
-		
 		switch (status)
 		{
-			case EXIT_COMMAND:
-				close_input_buffer(input_buffer);
-				free_input_buffer(input_buffer);/* free allocated memory */
+		case EXIT_COMMAND:
+			close_input_buffer(input_buffer);
+			free_input_buffer(input_buffer); /* free allocated memory */
+			exit(EXIT_SUCCESS);
+			break;
+
+		case COMMAND_NOT_FOUND:
+			print_command_not_found_error(command);
+			break;
+
+		case ENV_COMMAND:
+			printenv_with_environ();
+			break;
+
+		case SPACE_ONLY:
+			if (!isatty(STDIN_FILENO))
 				exit(EXIT_SUCCESS);
-				break;
+			break;
 
-			case COMMAND_NOT_FOUND:
-				print_command_not_found_error(command);
-				break;
+		case EOF_ENCOUNTERED:
+			close_input_buffer(input_buffer);
+			/* If a prompt was printed, print a newline. */
+			if (isatty(STDIN_FILENO))
+				printf("\n");
+			exit(EXIT_SUCCESS);
+			break;
 
-			case ENV_COMMAND:
-				printenv_with_environ();
-				break;
+		case EXECUTABLE_COMMAND:
+			execute(args);
+			break;
 
-			case EOF_ENCOUNTERED:
-				close_input_buffer(input_buffer);
-				/* If a prompt was printed, print a newline. */
-				if (isatty(STDIN_FILENO))
-						printf("\n");
-				exit(EXIT_SUCCESS);
-				break;
-
-			case EXECUTABLE_COMMAND:
-				execute(args);	
-				break;
-
-			default:
-				printf("unhandled case\n");
-				break;
+		default:
+			printf("unhandled case\n");
+			break;
 		}
 	}
-	
+
 	return (EXIT_FAILURE);
 }

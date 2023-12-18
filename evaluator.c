@@ -28,7 +28,6 @@ int is_exit(char *str)
 		return (1);
 	}
 	return (0);
-
 }
 
 int is_env(char *str)
@@ -40,10 +39,18 @@ int is_env(char *str)
 	return (0);
 }
 
-
 int is_eof(char *str)
 {
 	if (!str)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+int is_space_only(char *str)
+{
+	if (!strlen(str))
 	{
 		return (1);
 	}
@@ -76,6 +83,8 @@ int evaluate(char *str)
 		return (ENV_COMMAND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
+	else if (is_space_only(str))
+		return (SPACE_ONLY);
 	else if (is_executable(str))
 	{
 		/* trim spaces before checking executability */
@@ -90,7 +99,3 @@ int evaluate(char *str)
 	}
 	return (COMMAND_NOT_FOUND);
 }
-
-
-
-

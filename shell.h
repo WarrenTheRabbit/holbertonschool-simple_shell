@@ -12,6 +12,7 @@
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
 #define ENV_COMMAND 10
+#define SPACE_ONLY 20
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 /**
@@ -47,4 +48,5 @@ void trim(char * const string);
 void parse(char *command);
 void trim_spaces(char *str);
 void free_input_buffer(InputBuffer *input_buffer);
+int is_space_only(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
