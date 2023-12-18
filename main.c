@@ -15,10 +15,6 @@ int main(void)
 			print_prompt();
 		}
 		command = readline(stream, input_buffer);
-		if (!command)
-		{
-			return (EXIT_FAILURE);
-		}
 		parse(command);
 		initialise_command_array(command, args, 10);
 
