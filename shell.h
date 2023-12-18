@@ -46,5 +46,4 @@ void execute(char **command);
 void trim(char * const string);
 void parse(char *command);
 void trim_spaces(char *str);
-void free_input_buffer(InputBuffer *input_buffer);
 void initialise_command_array(char *line, char *args[], int max_args);
