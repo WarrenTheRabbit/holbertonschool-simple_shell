@@ -17,7 +17,8 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		initialise_command_array(command, args, 10);
-		
+
+
 		/**
 		 * Commented out because segmentation fault resulted in non-interactive mode.
 		 *
