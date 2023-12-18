@@ -3,7 +3,12 @@
 void initialise_command_array(char *line, char *args[], int max_args)
 {
 	int arg_count = 0;
-	char *token = strtok(line, " ");
+	char *token;
+
+	if (line == NULL)
+		return;
+	
+	token = strtok(line, " ");
 
 	while (token != NULL  && arg_count < max_args -1)
 	{
