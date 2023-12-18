@@ -16,7 +16,7 @@ void execute(char **args)
 		/* Child process is executing. */
 		if (execve(args[0], args, NULL) == -1)
 		{
-			perror("execve");
+			perror("execvp");
 		}
 	}
 	else 

@@ -56,15 +56,7 @@ int evaluate(char *str)
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
-	{
-		/* check for spaces-only or empty string */
-		if (strspn(str, " \t\n") == strlen(str))
-		{
-			write(1, "Empty command\n", 14);
-			return (COMMAND_NOT_FOUND);
-		}
 		return (EXECUTABLE_COMMAND);
-	}
 	
 	return (COMMAND_NOT_FOUND);
 }
