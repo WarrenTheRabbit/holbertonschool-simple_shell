@@ -17,8 +17,6 @@ void execute(char **args)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("execve");
-			/* use _exit to avoid atexit handlers */
-			_exit(EXIT_FAILURE);
 		}
 	}
 	else 
