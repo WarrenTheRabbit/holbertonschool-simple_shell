@@ -15,6 +15,9 @@
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
+
+extern char **environ;
+
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:
