@@ -31,8 +31,8 @@ void handle_executable_command(char *args[], int *status, int *status_is_set)
  */
 int main(void)
 {
-	int status;
-	int status_is_set = 0;
+	int status, exit_code;
+	int exit_code_is_set = 0;
 	char *command;
 	char *args[1024];
 	FILE *stream = stdin;
@@ -44,27 +44,25 @@ int main(void)
 		{
 			print_prompt();
 		}
+		
 		command = readline(stream, input_buffer);
 		trim(command);
+		
 		initialise_command_array(command, args, 1024);
-
-
-		/**
-		 * Commented out because segmentation fault resulted in non-interactive mode.
-		 *
-		 * parse(command);
-		 *
-		 */
+		
 		status = evaluate(command);
 
-		if (!status_is_set)
-			status = 0;
+		if (!exit_code_is_set)
+			exit_code = 0;
 
 		switch (status)
 		{
 			case EMPTY_INPUT: break;
 
-			case EXIT_COMMAND: handle_exit(input_buffer, status); break;
+			case EXIT_COMMAND:
+				close_input_buffer(input_buffer);
+				exit(exit_code);
+				break;
 
 			case COMMAND_NOT_FOUND: print_command_not_found_error(command); break;
 
@@ -75,11 +73,12 @@ int main(void)
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
 					printf("\n");
-				handle_exit(input_buffer, status);
+				exit(exit_code);
 				break;
 
 			case EXECUTABLE_COMMAND:
-				handle_executable_command(args, &status, &status_is_set);
+				exit_code = execute(args);	
+				exit_code_is_set = 1;
 				break;
 
 			default: printf("unhandled case\n"); break;
