@@ -57,7 +57,6 @@ int evaluate(char *str)
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
 		return (EXECUTABLE_COMMAND);
-
 	return (COMMAND_NOT_FOUND);
 }
 

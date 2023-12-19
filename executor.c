@@ -19,7 +19,7 @@ void execute(char **args)
 			perror("execve");
 		}
 	}
-	else 
+	else
 	{
 		waitpid(pid, &status, 0);
 	}
