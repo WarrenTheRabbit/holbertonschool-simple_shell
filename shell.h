@@ -1,3 +1,6 @@
+#ifndef SHELL_H
+#define SHELL_H
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -50,4 +53,8 @@ int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
+void handle_exit(InputBuffer *input_buffer, int status);
+void handle_executable_command(char *args[], int *status, int *status_is_set);
 void initialise_command_array(char *line, char *args[], int max_args);
+
+#endif /* SHELL_H */

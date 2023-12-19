@@ -20,9 +20,9 @@ void trim(char * const a)
 
 	while (isspace(*q))
 		++q;
-	while (*q) 
+	while (*q)
 		*p++ = *q++;
 	*p = '\0';
-	while (p > a && isspace(*--p)) 
+	while (p > a && isspace(*--p))
 		*p = '\0';
 }
