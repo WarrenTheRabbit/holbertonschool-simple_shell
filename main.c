@@ -23,11 +23,10 @@ int main(void)
 		/**
 		 * Commented out because segmentation fault resulted in non-interactive mode.
 		 *
-		 * parse(command); 
+		 * parse(command);
 		 *
 		 */
 		status = evaluate(command);
-		
 		if (!exit_code)
 			exit_code = 0;
 
