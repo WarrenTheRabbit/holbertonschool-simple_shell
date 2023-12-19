@@ -1,3 +1,5 @@
+#include "shell.h"
+
 int is_executable(char *str)
 {
 	struct stat file_stat;
