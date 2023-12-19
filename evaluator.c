@@ -29,6 +29,13 @@ int is_eof(char *str)
 	return (0);
 }
 
+int is_empty(char *str)
+{
+	if (strlen(str) == 0)
+		return (1);
+	return (0);
+}
+
 int is_executable(char *str)
 {
 	struct stat file_stat;
@@ -49,6 +56,8 @@ int evaluate(char *str)
 {
 	if (is_eof(str)) /*Must guard against NULL first with this check */
 		return (EOF_ENCOUNTERED);
+	else if (is_empty(str))
+		return (EMPTY_INPUT);
 	else if (is_exit(str))
 		return (EXIT_COMMAND);
 	else if (is_env(str))

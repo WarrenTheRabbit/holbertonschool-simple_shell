@@ -30,6 +30,9 @@ int main(void)
 		
 		switch (status)
 		{
+			case EMPTY_INPUT:
+				break;
+
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
 				exit(EXIT_SUCCESS);
