@@ -1,3 +1,6 @@
+#ifndef SHELL_H
+#define SHELL_H
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,6 +18,10 @@
 #define SPACE_ONLY 20
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
+#define EMPTY_INPUT 3
+
+extern char **environ;
+
 /**
  * struct InputBuffer - a wrapper around the state needed for getline() and its return value
  * Description:
@@ -43,9 +50,12 @@ InputBuffer *new_input_buffer(void);
 char *readline(FILE *stream, InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
-void execute(char **command);
+int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
-void trim_spaces(char *str);
-int is_space_only(char *str);
+int is_executable(char *str);
+void handle_exit(InputBuffer *input_buffer, int status);
+void handle_executable_command(char *args[], int *status, int *status_is_set);
 void initialise_command_array(char *line, char *args[], int max_args);
+
+#endif /* SHELL_H */

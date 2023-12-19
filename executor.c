@@ -1,6 +1,13 @@
 #include "shell.h"
 
-void execute(char **args)
+/**
+ * execute - Executes a command in a child process.
+ *
+ * @args: An array of strings representing the command and its arguments.
+ *
+ * Return: The exit status of the child process.
+ */
+int execute(char **args)
 {
 	int status;
 	pid_t pid;
@@ -17,16 +24,9 @@ void execute(char **args)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("execve");
-			/* use _exit to avoid atexit handlers */
-			_exit(EXIT_FAILURE);
 		}
 	}
-	else 
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-		{
-			write(1, "Command not found or execution failed. \n", 39);
-		}
-	}
+	waitpid(pid, &status, 0);
+
+	return (WEXITSTATUS(status));
 }
