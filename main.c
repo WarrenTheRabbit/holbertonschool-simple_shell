@@ -24,7 +24,7 @@ int main(void)
 		/**
 		 * Commented out because segmentation fault resulted in non-interactive mode.
 		 *
-		 * parse(command); 
+		 * parse(command);
 		 *
 		 */
 		status = evaluate(command);
@@ -60,6 +60,7 @@ int main(void)
 
 			case EXECUTABLE_COMMAND:
 				status = execute(args);	
+				status_is_set = 1;
 				break;
 
 			default:
@@ -67,6 +68,5 @@ int main(void)
 				break;
 		}
 	}
-	
 	return (EXIT_FAILURE);
 }
