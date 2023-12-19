@@ -43,7 +43,7 @@ InputBuffer *new_input_buffer(void);
 char *readline(FILE *stream, InputBuffer *input_buffer);
 void close_input_buffer(InputBuffer *input_buffer);
 int evaluate(char *str);
-void execute(char **command);
+int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
 void initialise_command_array(char *line, char *args[], int max_args);
