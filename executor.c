@@ -21,13 +21,5 @@ int execute(char **args)
 	}
 	waitpid(pid, &status, 0);
 	
-	if (WIFEXITED(status))
-	{
-		return(WEXITSTATUS(status));
-	}
-
-	return (EXIT_FAILURE);
-
-
-
+	return (WEXITSTATUS(status));
 }

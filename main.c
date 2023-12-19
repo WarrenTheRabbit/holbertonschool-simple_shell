@@ -3,7 +3,8 @@
 
 int main(void)
 {
-	int status, exit_code;
+	int status;
+       	int status_is_set = 0;
 	char *command;
 	char *args[1024];
 	FILE *stream = stdin;
@@ -28,8 +29,8 @@ int main(void)
 		 */
 		status = evaluate(command);
 		
-		if (!exit_code)
-			exit_code = 0;
+		if (!status_is_set)
+			status = 0;
 
 		switch (status)
 		{
@@ -38,7 +39,7 @@ int main(void)
 
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
-				exit(exit_code);
+				exit(status);
 				break;
 
 			case COMMAND_NOT_FOUND:
@@ -54,11 +55,11 @@ int main(void)
 				/* If a prompt was printed, print a newline. */
 				if (isatty(STDIN_FILENO))
 					printf("\n");
-				exit(exit_code);
+				exit(status);
 				break;
 
 			case EXECUTABLE_COMMAND:
-				exit_code = execute(args);	
+				status = execute(args);	
 				break;
 
 			default:
