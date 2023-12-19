@@ -16,6 +16,7 @@ int main(void)
 			print_prompt();
 		}
 		command = readline(stream, input_buffer);
+		trim(command);
 		initialise_command_array(command, args, 10);
 
 
