@@ -29,7 +29,7 @@ extern char **environ;
  * requirements: - reads an entire line
  * from `stream` and stores the address of the buffer containing the text
  * into *lineptr.
- * If *lineptr is set to NULL before the call, then getline() will allocate 
+ * If *lineptr is set to NULL before the call, then getline() will allocate
  * a buffer for storing the line.
  * @buffer: a string buffer
  * @buffer_length: variable
@@ -54,5 +54,6 @@ void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
+int process_command(char *command, char *args[], int *exit_code, int *exit_code_is_set);
 
 #endif /* SHELL_H */
