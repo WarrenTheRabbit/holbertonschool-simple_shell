@@ -49,4 +49,5 @@ int evaluate(char *str);
 int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
+int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
