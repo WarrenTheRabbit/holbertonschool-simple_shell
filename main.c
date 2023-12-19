@@ -5,7 +5,7 @@ int main(void)
 {
 	int status;
 	char *command;
-	char *args[10];
+	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 
@@ -17,7 +17,7 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		initialise_command_array(command, args, 10);
+		initialise_command_array(command, args, 1024);
 
 
 		/**
@@ -35,7 +35,7 @@ int main(void)
 
 			case EXIT_COMMAND:
 				close_input_buffer(input_buffer);
-				exit(EXIT_SUCCESS);
+				exit(2);
 				break;
 
 			case COMMAND_NOT_FOUND:
