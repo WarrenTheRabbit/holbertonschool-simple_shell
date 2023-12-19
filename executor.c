@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void execute(char **args)
+int execute(char **args)
 {
 	int status;
 	pid_t pid;
@@ -19,8 +19,15 @@ void execute(char **args)
 			perror("execve");
 		}
 	}
-	else
+	waitpid(pid, &status, 0);
+	
+	if (WIFEXITED(status))
 	{
-		waitpid(pid, &status, 0);
+		return(WEXITSTATUS(status));
 	}
+
+	return (EXIT_FAILURE);
+
+
+
 }
