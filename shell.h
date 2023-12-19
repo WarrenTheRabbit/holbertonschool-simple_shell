@@ -54,6 +54,11 @@ void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
-int process_command(char *command, char *args[], int *exit_code, int *exit_code_is_set);
+int process_command(
+		char *command,
+		char *args[],
+		int *exit_code,
+		int *exit_code_is_set
+		);
 
 #endif /* SHELL_H */
