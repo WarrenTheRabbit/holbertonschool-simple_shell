@@ -35,7 +35,7 @@ InputBuffer *new_input_buffer(void)
  * readline - reads a line of input into a buffer and excludes the
  * newline character
  * @stream: The stream from which to read the input.
- * @input_buffer - a wrapper for the state needed by getline()
+ * @input_buffer: a wrapper for the state needed by getline()
  * Return: nothing
  */
 char *readline(FILE *stream, InputBuffer *input_buffer)

@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * execute - Executes a command in a child process.
+ *
+ * @args: An array of strings representing the command and its arguments.
+ *
+ * Return: The exit status of the child process.
+ */
 int execute(char **args)
 {
 	int status;

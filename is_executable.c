@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * is_executable - Checks if a file is executable.
+ *
+ * @str: The path to the file.
+ *
+ * Return: 1 if the file is executable, 0 otherwise.
+ */
+
 int is_executable(char *str)
 {
 	struct stat file_stat;
