@@ -65,6 +65,5 @@ int main(void)
 				break;
 		}
 	}
-	
 	return (EXIT_FAILURE);
 }
