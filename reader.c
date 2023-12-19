@@ -2,19 +2,20 @@
 
 
 /**
- * new_input_buffer - returns a small wrapper around the state needed by getline()
+ * new_input_buffer - returns a small wrapper around the state needed by 
+ * getline()
  *
  * Description:
- * 	This function prepares an object with the state needed by the 'getline'
- * 	call.
+ * This function prepares an object with the state needed by the 'getline'
+ * call.
  *
- * 	getline(char **lineptr, size_t *n, FILE *stream) reads up to an including
- * 	the newline character. Unlike 'gets' and 'fgets', it does a read that is safe
- * 	and complete: it uses realloc to resize the lineptr buffer to ensure there
- * 	is enough room to store the complete line. It won't trunate the read or 
- * 	access invalid memory. If the buffer length is longer than the input, getline
- * 	will use the existing buffer space and null terminate the string, leaving the
- * 	buffer beyond it untouched.
+ * getline(char **lineptr, size_t *n, FILE *stream) reads up to an including
+ * the newline character. Unlike 'gets' and 'fgets', it does a read that is safe
+ * and complete: it uses realloc to resize the lineptr buffer to ensure there
+ * is enough room to store the complete line. It won't trunate the read or 
+ * access invalid memory. If the buffer length is longer than the input, getline
+ * will use the existing buffer space and null terminate the string, leaving the
+ * buffer beyond it untouched.
  *
  * Return: an InputBuffer object
  */
