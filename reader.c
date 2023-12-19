@@ -34,6 +34,7 @@ InputBuffer *new_input_buffer(void)
 /**
  * readline - reads a line of input into a buffer and excludes the
  * newline character
+ * @stream: The stream from which to read the input.
  * @input_buffer - a wrapper for the state needed by getline()
  * Return: nothing
  */
@@ -60,6 +61,9 @@ char *readline(FILE *stream, InputBuffer *input_buffer)
  * close_input_buffer - frees the memory allocated by new_input_buffer()
  * and readline()
  * @input_buffer: a struct that stores the state needed by getline()
+ * Description:
+ * This function frees the memory allocated for the buffer and the
+ * InputBuffer object itself.
  * Return: nothing
  */
 void close_input_buffer(InputBuffer *input_buffer)
