@@ -16,17 +16,12 @@ int main(void)
 		{
 			print_prompt();
 		}
+		
 		command = readline(stream, input_buffer);
 		trim(command);
+		
 		initialise_command_array(command, args, 1024);
-
-
-		/**
-		 * Commented out because segmentation fault resulted in non-interactive mode.
-		 *
-		 * parse(command);
-		 *
-		 */
+		
 		status = evaluate(command);
 		
 		if (!exit_code_is_set)
