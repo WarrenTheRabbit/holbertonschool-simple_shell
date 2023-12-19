@@ -3,6 +3,10 @@
 void trim(char * const a)
 {
     char *p = a, *q = a;
+
+    if (!a)
+	    return;
+
     while (isspace(*q))
 	    ++q;
     while (*q) 
