@@ -45,12 +45,9 @@ int main(void)
 		{
 			print_prompt();
 		}
-			
 		command = readline(stream, input_buffer);
 		trim(command);
-		
 		initialise_command_array(command, args, 1024);
-		
 		status = evaluate(command);
 
 		if (!exit_code_is_set)
@@ -58,35 +55,46 @@ int main(void)
 
 		switch (status)
 		{
-			case EMPTY_INPUT: break;
+		case EMPTY_INPUT:
+			break;
 
-			case EXIT_COMMAND:
-				close_input_buffer(input_buffer);
-				exit(exit_code);
-				break;
+		case EXIT_COMMAND:
+			close_input_buffer(input_buffer);
+			exit(exit_code);
+			break;
 
-			case COMMAND_NOT_FOUND: print_command_not_found_error(command); break;
+		case COMMAND_NOT_FOUND:
+			print_command_not_found_error(command);
+			break;
 
-			case ENV_COMMAND: printenv_with_environ(); break;
+		case ENV_COMMAND:
+			printenv_with_environ();
+			break;
 
-			case SPACE_ONLY:
-				if (!isatty(STDIN_FILENO))
-					exit(EXIT_SUCCESS);
-				break;
-			case EOF_ENCOUNTERED:
-				close_input_buffer(input_buffer);
-				/* If a prompt was printed, print a newline. */
-				if (isatty(STDIN_FILENO))
-					printf("\n");
-				exit(exit_code);
-				break;
+		case SPACE_ONLY:
+			if (!isatty(STDIN_FILENO))
+				exit(EXIT_SUCCESS);
+			break;
+		case EOF_ENCOUNTERED:
+			close_input_buffer(input_buffer);
+			/* If a prompt was printed, print a newline. */
+			if (isatty(STDIN_FILENO))
+				printf("\n");
+			exit(exit_code);
+			break;
 
-			case EXECUTABLE_COMMAND:
-				exit_code = execute(args);	
-				exit_code_is_set = 1;
-				break;
+		case BIN_COMMAND:
+			print_bin_command(args);
+			break;
 
-			default: printf("unhandled case\n"); break;
+		case EXECUTABLE_COMMAND:
+			exit_code = execute(args);
+			exit_code_is_set = 1;
+			break;
+
+		default:
+			printf("unhandled case\n");
+			break;
 		}
 	}
 	return (EXIT_FAILURE);

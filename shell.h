@@ -19,6 +19,7 @@
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
+#define BIN_COMMAND 4
 
 extern char **environ;
 
@@ -57,5 +58,7 @@ int is_executable(char *str);
 void handle_exit(InputBuffer *input_buffer, int status);
 void handle_executable_command(char *args[], int *status, int *status_is_set);
 void initialise_command_array(char *line, char *args[], int max_args);
+char **get_dir(char *path);
+void print_bin_command(char **args);
 
 #endif /* SHELL_H */

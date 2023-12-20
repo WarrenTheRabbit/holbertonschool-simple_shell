@@ -64,6 +64,41 @@ int is_empty(char *str)
 	return (0);
 }
 
+int is_bin_command(char *str)
+{
+	char *delimiter = ":";
+	char *token;
+	const char *key = "PATH";
+	const char *command_path = "/bin";
+	char *PATH, cp_path[1024];
+	char **dir_list;
+	int counter;
+
+	counter = 0;
+	PATH = getenv(key);
+	strcpy(cp_path, PATH);
+	token = strtok(cp_path, delimiter);
+	dir_list = NULL;
+	while (token != NULL)
+	{
+		if (strcmp(token, command_path) == 0)
+		{
+			dir_list = get_dir(token);
+			while (dir_list[counter])
+			{
+				if (strcmp(dir_list[counter], str) == 0)
+				{
+					return (1);
+				}
+				counter = counter + 1;
+			}
+			return (0);
+		}
+		token = strtok(NULL, delimiter);
+	}
+	return (0);
+}
+
 /**
  * evaluate - Evaluates the input string and determines the command type.
  *
@@ -83,9 +118,9 @@ int evaluate(char *str)
 		return (ENV_COMMAND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
-	else if (is_space_only(str))
-		return (SPACE_ONLY);
 	else if (is_executable(str))
 		return (EXECUTABLE_COMMAND);
+	else if (is_bin_command(str))
+		return (BIN_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }

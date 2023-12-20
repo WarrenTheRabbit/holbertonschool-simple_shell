@@ -33,3 +33,27 @@ void printenv_with_environ(void)
 		cp_environ++;
 	}
 }
+
+void print_bin_command(char **args)
+{
+	char buffer[256];
+	int counter;
+
+	counter = 0;
+	if (args[counter + 1] != NULL)
+	{
+		while (args[counter])
+		{
+			if (args[counter + 1])
+			{
+				snprintf(buffer, 256, "%s %s", args[counter], args[counter + 1]);
+			}
+			counter = counter + 1;
+		}
+		system(buffer);
+	}
+	else
+	{
+		system(args[0]);
+	}
+}
