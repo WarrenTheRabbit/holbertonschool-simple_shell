@@ -34,22 +34,31 @@ void printenv_with_environ(void)
 	}
 }
 
+/**
+ * print_bin_command - call print_bin_command
+ * @args: args from initialise_command_array
+ */
+
 void print_bin_command(char **args)
 {
 	char buffer[256];
 	int counter;
+	char flags[64];
 
 	counter = 0;
+
 	if (args[counter + 1] != NULL)
 	{
-		while (args[counter])
+		strcpy(flags, args[counter + 1]);
+		while (args[counter + 1])
 		{
-			if (args[counter + 1])
+			if (args[counter + 2])
 			{
-				snprintf(buffer, 256, "%s %s", args[counter], args[counter + 1]);
+				snprintf(flags, 64, "%s %s", flags, args[counter + 2]);
 			}
 			counter = counter + 1;
 		}
+		snprintf(buffer, 256, "%s %s", args[0], flags);
 		system(buffer);
 	}
 	else
