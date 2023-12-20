@@ -6,12 +6,17 @@
  * @command: The command to process.
  * @args: The array of arguments for the command.
  * @input_buffer: Pointer to the InputBuffer.
+ * @exit_code: starts as 0 but can be modified on failure.
  * Return: The status of the command processing.
  */
-void process_command(char *command, char *args[], InputBuffer *input_buffer, int *exit_code)
+void process_command(
+		char *command,
+		char *args[],
+		InputBuffer *input_buffer,
+		int *exit_code)
 {
 	int status = evaluate(command);
-	
+
 	switch (status)
 	{
 		case EMPTY_INPUT:
