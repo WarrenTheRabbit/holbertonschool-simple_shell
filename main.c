@@ -34,7 +34,7 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer, int
 			/* If a prompt was printed, print a newline. */
 			if (isatty(STDIN_FILENO))
 				printf("\n");
-			exit(exit_code);
+			exit(*exit_code);
 			break;
 		case EXECUTABLE_COMMAND:
 			*exit_code = execute(args);
@@ -54,7 +54,7 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer, int
 int main(void)
 {
 	char *command;
-	int *exit_code = NULL;
+	int exit_code = 0;
 	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
@@ -68,7 +68,7 @@ int main(void)
 		command = readline(stream, input_buffer);
 		trim(command);
 		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer, exit_code);
+		process_command(command, args, input_buffer, &exit_code);
 	}
 	return (exit_code);
 }
