@@ -9,24 +9,21 @@
  * @exit_code_is_set: Pointer to the flag indicating whether exit code is set.
  * Return: The status of the command processing.
  */
-int process_command(
-		char *command,
-		char *args[],
-		int *exit_code,
-		int *exit_code_is_set
-		)
+void process_command(char *command, char *args[], InputBuffer *input_buffer)
 {
+	int exit_code;
+	int exit_code_is_set = 0;
 	int status = evaluate(command);
 
-	if (!(*exit_code_is_set))
-		*exit_code = 0;
+	if (!exit_code_is_set)
+		exit_code = 0;
 	switch (status)
 	{
 		case EMPTY_INPUT:
 			break;
 		case EXIT_COMMAND:
 			close_input_buffer(input_buffer);
-			exit(*exit_code);
+			exit(exit_code);
 			break;
 		case COMMAND_NOT_FOUND:
 			print_command_not_found_error(command);
@@ -39,17 +36,16 @@ int process_command(
 			/* If a prompt was printed, print a newline. */
 			if (isatty(STDIN_FILENO))
 				printf("\n");
-			exit(*exit_code);
+			exit(exit_code);
 			break;
 		case EXECUTABLE_COMMAND:
-			*exit_code = execute(args);
-			*exit_code_is_set = 1;
+			exit_code = execute(args);
+			exit_code_is_set = 1;
 			break;
 		default:
 			printf("unhandled case\n");
 			break;
 	}
-	return (status);
 }
 
 /**
@@ -59,8 +55,6 @@ int process_command(
  */
 int main(void)
 {
-	int status, exit_code;
-	int exit_code_is_set = 0;
 	char *command;
 	char *args[1024];
 	FILE *stream = stdin;
@@ -75,7 +69,7 @@ int main(void)
 		command = readline(stream, input_buffer);
 		trim(command);
 		initialise_command_array(command, args, 1024);
-		status = process_command(command, args, &exit_code, &exit_code_is_set);
+		process_command(command, args, input_buffer);
 	}
 	return (EXIT_FAILURE);
 }
