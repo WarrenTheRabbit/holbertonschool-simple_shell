@@ -10,11 +10,8 @@
  */
 void process_command(char *command, char *args[], InputBuffer *input_buffer, int *exit_code)
 {
-	int exit_code_is_set = 0;
 	int status = evaluate(command);
-
-	if (!exit_code_is_set)
-		*exit_code = 0;
+	
 	switch (status)
 	{
 		case EMPTY_INPUT:
@@ -38,7 +35,6 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer, int
 			break;
 		case EXECUTABLE_COMMAND:
 			*exit_code = execute(args);
-			exit_code_is_set = 1;
 			break;
 		default:
 			printf("unhandled case\n");
