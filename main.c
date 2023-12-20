@@ -5,8 +5,7 @@
  * exit code.
  * @command: The command to process.
  * @args: The array of arguments for the command.
- * @exit_code: Pointer to the exit code.
- * @exit_code_is_set: Pointer to the flag indicating whether exit code is set.
+ * @input_buffer: Pointer to the InputBuffer.
  * Return: The status of the command processing.
  */
 void process_command(char *command, char *args[], InputBuffer *input_buffer)
