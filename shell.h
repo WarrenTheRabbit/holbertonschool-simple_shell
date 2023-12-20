@@ -24,21 +24,21 @@
 extern char **environ;
 
 /**
- * struct InputBuffer - a wrapper around the state needed for getline() and its return value
+ * struct InputBuffer - a wrapper around the state needed for getline()
+ * and its return value
  * Description:
- * 	getline(char **lineptr, size_t *n, FILE *stream) has three state requirements:
- * 		- reads an entire line
- * 	from `stream` and stores the address of the buffer containing the text 
- * 	into *lineptr.
- *
- * 	If *lineptr is set to NULL before the call, then getline() will allocate 
- * 	a buffer for storing the line.
- * 
+ * getline(char **lineptr, size_t *n, FILE *stream) has three state
+ * requirements: - reads an entire line
+ * from `stream` and stores the address of the buffer containing the text
+ * into *lineptr.
+ * If *lineptr is set to NULL before the call, then getline() will allocate
+ * a buffer for storing the line.
  * @buffer: a string buffer
  * @buffer_length: variable
  * @input_length: to store the number of bytes read by getline()
  */
-typedef struct {
+typedef struct
+{
 	char *buffer;
 	size_t buffer_length;
 	ssize_t input_length;
@@ -55,10 +55,9 @@ int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
-void handle_exit(InputBuffer *input_buffer, int status);
-void handle_executable_command(char *args[], int *status, int *status_is_set);
 void initialise_command_array(char *line, char *args[], int max_args);
 char **get_dir(char *path);
 void print_bin_command(char **args);
+void process_command(char *command, char *args[], InputBuffer *input_buffer);
 
 #endif /* SHELL_H */
