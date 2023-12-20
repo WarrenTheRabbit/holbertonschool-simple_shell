@@ -15,9 +15,11 @@
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
 #define ENV_COMMAND 10
+#define SPACE_ONLY 20
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
+#define BIN_COMMAND 4
 
 extern char **environ;
 
@@ -54,6 +56,8 @@ void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
+char **get_dir(char *path);
+void print_bin_command(char **args);
 void process_command(char *command, char *args[], InputBuffer *input_buffer);
 
 #endif /* SHELL_H */

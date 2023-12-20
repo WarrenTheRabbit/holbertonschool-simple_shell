@@ -15,7 +15,6 @@ int is_exit(char *str)
 		return (1);
 	}
 	return (0);
-
 }
 
 /**
@@ -41,6 +40,7 @@ int is_env(char *str)
  *
  * Return: 1 if the string is NULL, 0 otherwise.
  */
+
 int is_eof(char *str)
 {
 	if (!str)
@@ -61,6 +61,41 @@ int is_empty(char *str)
 {
 	if (strlen(str) == 0)
 		return (1);
+	return (0);
+}
+
+int is_bin_command(char *str)
+{
+	char *delimiter = ":";
+	char *token;
+	const char *key = "PATH";
+	const char *command_path = "/bin";
+	char *PATH, cp_path[1024];
+	char **dir_list;
+	int counter;
+
+	counter = 0;
+	PATH = getenv(key);
+	strcpy(cp_path, PATH);
+	token = strtok(cp_path, delimiter);
+	dir_list = NULL;
+	while (token != NULL)
+	{
+		if (strcmp(token, command_path) == 0)
+		{
+			dir_list = get_dir(token);
+			while (dir_list[counter])
+			{
+				if (strcmp(dir_list[counter], str) == 0)
+				{
+					return (1);
+				}
+				counter = counter + 1;
+			}
+			return (0);
+		}
+		token = strtok(NULL, delimiter);
+	}
 	return (0);
 }
 
@@ -85,9 +120,7 @@ int evaluate(char *str)
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
 		return (EXECUTABLE_COMMAND);
+	else if (is_bin_command(str))
+		return (BIN_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }
-
-
-
-
