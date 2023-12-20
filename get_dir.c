@@ -13,7 +13,7 @@ char **get_dir(char *path)
         exit(0);
     }
     counter = 0;
-    dir_list = malloc(1024);
+    dir_list = malloc(1024 * 8);
     if (dir_list == NULL)
     {
         exit(0);
