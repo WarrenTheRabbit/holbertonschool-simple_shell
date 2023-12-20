@@ -8,21 +8,20 @@
  * @input_buffer: Pointer to the InputBuffer.
  * Return: The status of the command processing.
  */
-void process_command(char *command, char *args[], InputBuffer *input_buffer)
+void process_command(char *command, char *args[], InputBuffer *input_buffer, int *exit_code)
 {
-	int exit_code;
 	int exit_code_is_set = 0;
 	int status = evaluate(command);
 
 	if (!exit_code_is_set)
-		exit_code = 0;
+		*exit_code = 0;
 	switch (status)
 	{
 		case EMPTY_INPUT:
 			break;
 		case EXIT_COMMAND:
 			close_input_buffer(input_buffer);
-			exit(exit_code);
+			exit(*exit_code);
 			break;
 		case COMMAND_NOT_FOUND:
 			print_command_not_found_error(command);
@@ -35,10 +34,10 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer)
 			/* If a prompt was printed, print a newline. */
 			if (isatty(STDIN_FILENO))
 				printf("\n");
-			exit(exit_code);
+			exit(*exit_code);
 			break;
 		case EXECUTABLE_COMMAND:
-			exit_code = execute(args);
+			*exit_code = execute(args);
 			exit_code_is_set = 1;
 			break;
 		default:
@@ -55,6 +54,7 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer)
 int main(void)
 {
 	char *command;
+	int exit_code = 0;
 	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
@@ -68,7 +68,7 @@ int main(void)
 		command = readline(stream, input_buffer);
 		trim(command);
 		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer);
+		process_command(command, args, input_buffer, &exit_code);
 	}
-	return (EXIT_FAILURE);
+	return (exit_code);
 }
