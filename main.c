@@ -56,7 +56,7 @@ int main(void)
 {
 	char *command;
 	int exit_code = 0;
-	char *args[1024];
+	Arguments args;
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 
@@ -68,8 +68,8 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer, &exit_code);
+		arguments_init(&args, input_buffer);
+		process_command(command, args.arguments, input_buffer, &exit_code);
 	}
 	return (exit_code);
 }
