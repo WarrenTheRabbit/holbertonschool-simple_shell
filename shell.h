@@ -56,9 +56,8 @@ void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
-char **get_dir(char *path);
+int has_bin_command(char *str);
 void print_bin_command(char **args);
 void process_command(char *command, char *args[], InputBuffer *input_buffer);
-void free_grid(char **grid);
 
 #endif /* SHELL_H */
