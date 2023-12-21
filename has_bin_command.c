@@ -24,11 +24,13 @@ int has_bin_command(char *str)
             {
                 if (strcmp(entry->d_name, str))
                 {
+                    closedir(dir_pointer);
                     return (1);
                 }
             }
         }
         token = strtok(NULL, delimiter);
     }
+    closedir(dir_pointer);
     return (0);
 }
