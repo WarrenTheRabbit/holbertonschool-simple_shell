@@ -12,3 +12,6 @@ typedef struct Command
 	Arguments *args;
 	int (*execute)(struct Command *self);
 } Command;
+
+
+Command *command_init(char *command_name, Arguments *args);
