@@ -9,3 +9,4 @@ typedef struct
 	size_t count;
 } Arguments;
 
+int arguments_init(Arguments *self, InputBuffer *input);
