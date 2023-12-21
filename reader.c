@@ -45,10 +45,9 @@ char *readline(FILE *stream, InputBuffer *input_buffer)
 					&(input_buffer->buffer_length),
 					stream
 			);
-
 	if (bytes_read == -1)
 	{
-		return (NULL);
+		exit(EXIT_SUCCESS);
 	}
 	/* Discard the trailing newline by replacing it with null character. */
 	input_buffer->input_length = bytes_read - 1;

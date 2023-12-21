@@ -15,9 +15,11 @@
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
 #define ENV_COMMAND 10
+#define SPACE_ONLY 20
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
+#define BIN_COMMAND 4
 
 extern char **environ;
 
@@ -60,5 +62,7 @@ void process_command(
 		InputBuffer *input_buffer,
 		int *exit_code
 		);
+void print_bin_command(char **args);
+int has_bin_command(char *str);
 
 #endif /* SHELL_H */

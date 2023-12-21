@@ -21,16 +21,20 @@ void process_command(
 	{
 		case EMPTY_INPUT:
 			break;
+		
 		case EXIT_COMMAND:
 			close_input_buffer(input_buffer);
 			exit(*exit_code);
 			break;
+		
 		case COMMAND_NOT_FOUND:
 			print_command_not_found_error(command);
 			break;
+		
 		case ENV_COMMAND:
 			printenv_with_environ();
 			break;
+		
 		case EOF_ENCOUNTERED:
 			close_input_buffer(input_buffer);
 			/* If a prompt was printed, print a newline. */
@@ -38,9 +42,20 @@ void process_command(
 				printf("\n");
 			exit(*exit_code);
 			break;
+		
 		case EXECUTABLE_COMMAND:
 			*exit_code = execute(args);
 			break;
+		
+		case SPACE_ONLY:
+			if (!isatty(STDIN_FILENO))
+				exit(EXIT_SUCCESS);
+			break;
+		
+		case BIN_COMMAND:
+			print_bin_command(args);
+			break;
+		
 		default:
 			printf("unhandled case\n");
 			break;
@@ -52,6 +67,7 @@ void process_command(
  * Return: EXIT_FAILURE if the program encounters an error, otherwise, it
  * does not return.
  */
+
 int main(void)
 {
 	char *command;

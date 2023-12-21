@@ -15,7 +15,6 @@ int is_exit(char *str)
 		return (1);
 	}
 	return (0);
-
 }
 
 /**
@@ -41,6 +40,7 @@ int is_env(char *str)
  *
  * Return: 1 if the string is NULL, 0 otherwise.
  */
+
 int is_eof(char *str)
 {
 	if (!str)
@@ -85,9 +85,7 @@ int evaluate(char *str)
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
 		return (EXECUTABLE_COMMAND);
+	else if (has_bin_command(str))
+		return (BIN_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }
-
-
-
-
