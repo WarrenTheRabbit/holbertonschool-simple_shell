@@ -55,12 +55,12 @@ void print_bin_command(char **args)
 		{
 			if (args[counter + 2])
 			{
-				snprintf(flags, 256, "%s %s", temp_flags, args[counter + 2]);
+				snprintf(flags, 128, "%s %s", temp_flags, args[counter + 2]);
 				strcpy(temp_flags, flags);
 			}
 			counter = counter + 1;
 		}
-		snprintf(buffer, 256, "%s %s", args[0], flags);
+		snprintf(buffer, 128, "%s %s", args[0], flags);
 		system(buffer);
 	}
 	else

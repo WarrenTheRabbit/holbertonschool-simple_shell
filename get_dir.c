@@ -1,6 +1,27 @@
 #include "shell.h"
 #include <dirent.h>
 
+/**
+ * free_grid - calls free_grid
+ * @grid:  nested char
+ *
+ * Return: void
+ */
+
+void free_grid(char **grid)
+{
+	int counter;
+
+	counter = 0;
+
+	while (grid[counter])
+	{
+		free(grid[counter]);
+		counter = counter + 1;
+	}
+	free(grid);
+}
+
 char **get_dir(char *path)
 {
     struct dirent *entry;
@@ -13,7 +34,7 @@ char **get_dir(char *path)
         exit(0);
     }
     counter = 0;
-    dir_list = malloc(1024 * 8);
+    dir_list = malloc(1024);
     if (dir_list == NULL)
     {
         exit(0);
@@ -33,12 +54,7 @@ char **get_dir(char *path)
         if (dir_list[counter] == NULL)
         {
             perror("Error allocating memory");
-            while (counter > 0)
-            {
-                free(dir_list[counter - 1]);
-                counter--;
-            }
-            free(dir_list);
+            free_grid(dir_list);
             closedir(dir_pointer);
             exit(EXIT_FAILURE);
         }
