@@ -55,7 +55,7 @@ void print_bin_command(char **args)
 		{
 			if (args[counter + 2])
 			{
-				snprintf(flags, 128, "%s %s", temp_flags, args[counter + 2]);
+				snprintf(flags, 256, "%s %s", temp_flags, args[counter + 2]);
 				strcpy(temp_flags, flags);
 			}
 			counter = counter + 1;

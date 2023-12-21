@@ -88,20 +88,17 @@ int is_bin_command(char *str)
 			{
 				if (strcmp(dir_list[counter], str) == 0)
 				{
-					free(cp_path);
-					free(PATH);
+					free(dir_list);
 					return (1);
 				}
 				counter = counter + 1;
 			}
-			free(cp_path);
-			free(PATH);
+			free(dir_list);
 			return (0);
 		}
 		token = strtok(NULL, delimiter);
 	}
-	free(cp_path);
-	free(PATH);
+	free(dir_list);
 	return (0);
 }
 
