@@ -13,6 +13,11 @@
 #include "inputbuffer.h"
 #endif
 
+#ifndef ARGUMENTS_H
+#define ARGUMENTS_H
+#include "arguments.h"
+#endif
+
 #define TRUE 1
 
 /* Shell status codes - these are returned by the evaluate stage of the REPL */
