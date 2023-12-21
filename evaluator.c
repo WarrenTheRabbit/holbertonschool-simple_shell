@@ -64,48 +64,6 @@ int is_empty(char *str)
 	return (0);
 }
 
-// int is_bin_command(char *str)
-// {
-	// char *delimiter = ":";
-	// char *token;
-	// const char *key = "PATH";
-	// const char *command_path = "/bin";
-	// char *PATH, cp_path[1024];
-	// char **dir_list;
-	// int counter;
-
-	// counter = 0;
-	// PATH = getenv(key);
-	// strcpy(cp_path, PATH);
-	// token = strtok(cp_path, delimiter);
-	// dir_list = NULL;
-	// while (token != NULL)
-	// {
-	// 	if (strcmp(token, command_path) == 0)
-	// 	{
-	// 		dir_list = get_dir(token);
-	// 		if (dir_list == NULL)
-	// 		{
-	// 			return (0);
-	// 		}
-	// 		while (dir_list[counter])
-	// 		{
-	// 			if (strcmp(dir_list[counter], str) == 0)
-	// 			{
-	// 				free_grid(dir_list);
-	// 				return (1);
-	// 			}
-	// 			counter = counter + 1;
-	// 		}
-	// 		free_grid(dir_list);
-	// 		return (0);
-	// 	}
-	// 	token = strtok(NULL, delimiter);
-	// }
-	// free_grid(dir_list);
-// 	return (0);
-// }
-
 /**
  * evaluate - Evaluates the input string and determines the command type.
  *
