@@ -1,3 +1,4 @@
+![image of simple shell](https://www.deviantart.com/tate27kh/art/Simple-Shell-Drawing-393197101)
 # holbertonschool-simple_shell
 Simple Shell is a minimalistic UNIX command line interpreter developed as part of the Holberton School curriculum. The shell allows users to execute commands in both interactive and non-interactive modes.
 
