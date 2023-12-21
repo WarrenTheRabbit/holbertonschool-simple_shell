@@ -22,4 +22,4 @@ typedef struct
 } InputBuffer;
 
 
-Something I am unsure I want.
+/* Something I am unsure I want. */
