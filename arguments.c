@@ -12,7 +12,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-int arguments_init(Arguments *self, InputBuffer *input)
+Arguments *arguments_init(Arguments *self, InputBuffer *input)
 {
         /* I intend to realloc memory if the initial malloc is not enough.*/
         size_t current_capacity = 64;
@@ -22,14 +22,14 @@ int arguments_init(Arguments *self, InputBuffer *input)
 
         /* I don't want to dereference null pointers so I check for that here. */
         if (self == NULL || input == NULL)
-                return (-1);
+                return (NULL);
 
         /* This is the first attempt at allocating enough memory for storing the arguments. */
         self->arguments = malloc(current_capacity * sizeof(char *));
 
         /* I need to know if memory allocation failed so I check for that here.*/
         if (self->arguments == NULL)
-                return (-1);
+                return (NULL);
 
         /* Currently there are no arguments stored in the struct.*/
         self->count = 0;
@@ -46,14 +46,14 @@ int arguments_init(Arguments *self, InputBuffer *input)
                 {
                         /* If there isn't, double the amount allocated */
                         current_capacity *= 2;
-                        self->arguments= realloc(self->arguments, current_capacity * sizeof(char *));
+                        self->arguments = realloc(self->arguments, current_capacity * sizeof(char *));
                         /* Confirm that allocation was successful. */
                         if (self->arguments == NULL)
                                 /*
                                  * Allocation was not successful.
                                  * Do I need to free any memory?
                                  */
-                                return (-1);
+                                return (NULL);
 
                 }
 
@@ -69,6 +69,6 @@ int arguments_init(Arguments *self, InputBuffer *input)
         /* The arguments array must be NULL terminated. */
         self->arguments[self->count] = NULL;
 
-        return (0);
+        return (self);
 }
 
