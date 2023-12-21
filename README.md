@@ -1,4 +1,4 @@
-![image of simple shell](https://www.deviantart.com/tate27kh/art/Simple-Shell-Drawing-393197101)
+![image of simple shell](https://i.pinimg.com/originals/32/01/3e/32013e979332126d89f5e1ec2426cfa4.jpg)
 # holbertonschool-simple_shell
 Simple Shell is a minimalistic UNIX command line interpreter developed as part of the Holberton School curriculum. The shell allows users to execute commands in both interactive and non-interactive modes.
 
@@ -63,9 +63,15 @@ Interactive mode:
 ```bash
 $ ./hsh
 ($) /bin/ls
-hsh main.c shell.c
+AUTHORS            evaluator.c         printer.c                      
+CONTRIBUTING.md    executor.c          reader.c                       
+LEARNING_GOALS.md  hsh                 scanner.c                      
+LICENSE            is_executable.c     shell.h                        
+Makefile           main.c              string_utilities.c             
+README.md          man_1_simple_shell                                 
+REQUIREMENTS.md    parser.c 
 ($)
-($) exit
+($) ^C
 $
 ```
 
@@ -95,7 +101,13 @@ Non-interactive mode:
 
 ```bash
 $ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
+AUTHORS            evaluator.c         printer.c                      
+CONTRIBUTING.md    executor.c          reader.c                       
+LEARNING_GOALS.md  hsh                 scanner.c                      
+LICENSE            is_executable.c     shell.h                        
+Makefile           main.c              string_utilities.c             
+README.md          man_1_simple_shell                                 
+REQUIREMENTS.md    parser.c 
 $
 $ cat test_ls_2
 /bin/ls
