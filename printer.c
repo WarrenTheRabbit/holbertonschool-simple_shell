@@ -43,18 +43,20 @@ void print_bin_command(char **args)
 {
 	char buffer[256];
 	int counter;
-	char flags[64];
+	char flags[128], temp_flags[128];
 
 	counter = 0;
 
 	if (args[counter + 1] != NULL)
 	{
 		strcpy(flags, args[counter + 1]);
+		strcpy(temp_flags, args[counter + 1]);
 		while (args[counter + 1])
 		{
 			if (args[counter + 2])
 			{
-				snprintf(flags, 64, "%s %s", flags, args[counter + 2]);
+				snprintf(flags, 128, "%s %s", temp_flags, args[counter + 2]);
+				strcpy(temp_flags, flags);
 			}
 			counter = counter + 1;
 		}

@@ -29,10 +29,23 @@ char **get_dir(char *path)
 
     while ((entry = readdir(dir_pointer)) != NULL)
     {
-        dir_list[counter] = entry->d_name;
-        counter = counter + 1;
+        dir_list[counter] = malloc(strlen(entry->d_name) + 1); // Allocate memory
+        if (dir_list[counter] == NULL)
+        {
+            perror("Error allocating memory");
+            while (counter > 0)
+            {
+                free(dir_list[counter - 1]);
+                counter--;
+            }
+            free(dir_list);
+            closedir(dir_pointer);
+            exit(EXIT_FAILURE);
+        }
+        strcpy(dir_list[counter], entry->d_name);
+        counter++;
     }
-    dir_list[counter + 1] = NULL;
+    dir_list[counter] = NULL;
     closedir(dir_pointer);
     return (dir_list);
 }
