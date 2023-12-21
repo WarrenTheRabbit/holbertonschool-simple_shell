@@ -5,9 +5,9 @@ Simple Shell is a minimalistic UNIX command line interpreter developed as part o
 
 - [Description](#description)
 - [Flowchart](#flowchart)
-- [File Structure](#file structure)
-- [System and Library calls](#system and library calls)
-- [Example of Use](#example of use)
+- [File Structure](#file_structure)
+- [System and Library calls](#system_and_library_calls)
+- [Example of Use](#example_of_use)
 - [Installation](#installation)
 - [Authors](#authors)
 - [Bugs](#bugs)
@@ -44,17 +44,18 @@ This table lists all the System calls `2` and library calls `3` used in this pro
 
 | Name | Manual Page | Brief Description |
 | --- | --- | --- |
-| `fork` | man 2 fork | fork() function creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process. |
-| `perror` | man 3 perror | perror() function produces a message on standard error describing the last error encountered during a call to a system or library function. |
-| `execve` | man 2 execve | execve() function allows a process to execute another program. |
-| `waitpid` | man 2 waitpid | waitpid() function suspends execution of the calling thread until a child specified by pid argument has changed state. |
-| `stat` | man 2 stat | wwwwww |
-| `exit` | man 3 exit | wwwwww |
-| `isatty` | man 3 isatty | isatty() function tests whether a file descriptor refers to a terminal. |
-| `malloc` | man 3 malloc | malloc() function dynamically allocates a single large block of memory with the specified size. |
+| `fork` | [man 2 fork](https://man7.org/linux/man-pages/man2/fork.2.html) | fork() function creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process. |
+| `perror` | [man 3 perror](https://man7.org/linux/man-pages/man3/perror.3.html) | perror() function produces a message on standard error describing the last error encountered during a call to a system or library function. |
+| `execve` | [man 2 execve](https://man7.org/linux/man-pages/man2/execve.2.html) | execve() function allows a process to execute another program. |
+| `waitpid` | [man 2 waitpid](https://man7.org/linux/man-pages/man2/waitpid.2.html) | waitpid() function suspends execution of the calling thread until a child specified by pid argument has changed state. |
+| `stat` | [man 2 stat](https://man7.org/linux/man-pages/man2/stat.2.html) | stat() function display detailed information about a file or file system. |
+| `exit` | [man 3 exit](https://man7.org/linux/man-pages/man3/exit.3.html) | exit() function causes the current shell or script to exit or terminate. |
+| `isatty` | [man 3 isatty](https://man7.org/linux/man-pages/man3/isatty.3.html) | isatty() function tests whether a file descriptor refers to a terminal. |
+| `malloc` | [man 3 malloc](https://man7.org/linux/man-pages/man3/malloc.3.html) | malloc() function dynamically allocates a single large block of memory with the specified size. |
 | `getline` | man 3 getline | getline() function reads an entire line from input, storing the address of the buffer containing the text into a pointer. |
-| `free` | man 3 free | free() function frees the memory space from the heap, which must have been returned by a previous call to malloc(), calloc(), or realloc(). |
-| `strtok` | man 3 strtok | wwwwww |
+| `free` | [man 3 free](https://man7.org/linux/man-pages/man3/free.3.html) | free() function frees the memory space from the heap, which must have been returned by a previous call to malloc(), calloc(), or realloc(). |
+| `strtok` | [man 3 strtok](https://man7.org/linux/man-pages/man3/strtok.3.html) | strtok() function is to break a string into a series of tokens based on a specified delimiter. |
+
 ## Example of Use
 Interactive mode:
 
