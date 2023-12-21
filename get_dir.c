@@ -10,16 +10,16 @@
 
 void free_grid(char **grid)
 {
-	int counter;
+    int counter;
 
-	counter = 0;
+    counter = 0;
 
-	while (grid[counter])
-	{
-		free(grid[counter]);
-		counter = counter + 1;
-	}
-	free(grid);
+    while (grid[counter])
+    {
+        free(grid[counter]);
+        counter = counter + 1;
+    }
+    free(grid);
 }
 
 char **get_dir(char *path)
@@ -50,15 +50,23 @@ char **get_dir(char *path)
 
     while ((entry = readdir(dir_pointer)) != NULL)
     {
-        dir_list[counter] = malloc(strlen(entry->d_name) + 1); // Allocate memory
+        dir_list[counter] = malloc(strlen(entry->d_name) + 1);
         if (dir_list[counter] == NULL)
         {
             perror("Error allocating memory");
-            free_grid(dir_list);
+            while (counter > 0)
+            {
+                free(dir_list[counter - 1]);
+                counter--;
+            }
+            free(dir_list);
             closedir(dir_pointer);
             exit(EXIT_FAILURE);
         }
-        strcpy(dir_list[counter], entry->d_name);
+        if (entry->d_name[0] != '.')
+        {
+            strcpy(dir_list[counter], entry->d_name);
+        }
         counter++;
     }
     dir_list[counter] = NULL;
