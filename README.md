@@ -80,8 +80,8 @@ Contributions are welcome! Fork the repository, create a branch, make your chang
 
 ## License
 
-This project is released under the MIT License - see the LICENSE file for details.
+This project is released under the MIT License - see the [LICENSE]() file for details.
 
-##Acknowledgements
+## Acknowledgements
 
 This project was developed as part of the curriculum for [Holberton School](https://www.holbertonschool.com/), a campus-based full-stack software engineering program. We would like to acknowledge the guidance and support received from our peers and mentors during the development of this Simple Shell project.
