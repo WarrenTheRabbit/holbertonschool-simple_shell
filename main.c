@@ -56,7 +56,7 @@ int main(void)
 {
 	char *command;
 	int exit_code = 0;
-	Arguments args;
+	Arguments *args = malloc(sizeof(Arguments));
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 
@@ -68,8 +68,8 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		arguments_init(&args, input_buffer);
-		process_command(command, &args, input_buffer, &exit_code);
+		args = arguments_init(args, input_buffer);
+		process_command(command, args, input_buffer, &exit_code);
 	}
 	return (exit_code);
 }
