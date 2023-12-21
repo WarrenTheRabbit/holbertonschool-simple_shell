@@ -11,7 +11,7 @@
  */
 void process_command(
 		char *command,
-		char *args[],
+		Arguments *args,
 		InputBuffer *input_buffer,
 		int *exit_code)
 {
@@ -39,7 +39,7 @@ void process_command(
 			exit(*exit_code);
 			break;
 		case EXECUTABLE_COMMAND:
-			*exit_code = execute(args);
+			*exit_code = execute(args->arguments);
 			break;
 		default:
 			printf("unhandled case\n");
@@ -69,7 +69,7 @@ int main(void)
 		command = readline(stream, input_buffer);
 		trim(command);
 		arguments_init(&args, input_buffer);
-		process_command(command, args.arguments, input_buffer, &exit_code);
+		process_command(command, &args, input_buffer, &exit_code);
 	}
 	return (exit_code);
 }
