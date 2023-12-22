@@ -62,7 +62,7 @@ void process_command(
 		InputBuffer *input_buffer,
 		int *exit_code
 		);
-void print_bin_command(char **args);
+void get_first_string(char *const str, char delimiter);
 int has_bin_command(char *str);
 
 #endif /* SHELL_H */

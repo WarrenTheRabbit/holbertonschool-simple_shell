@@ -85,7 +85,5 @@ int evaluate(char *str)
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
 		return (EXECUTABLE_COMMAND);
-	else if (has_bin_command(str))
-		return (BIN_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }

@@ -1,5 +1,5 @@
 #include <ctype.h>
-
+#include "shell.h"
 /**
  * trim - Removes leading and trailing whitespace from a string.
  *
@@ -11,7 +11,7 @@
  *
  * Return: Nothing.
  */
-void trim(char * const a)
+void trim(char *const a)
 {
 	char *p = a, *q = a;
 
@@ -25,4 +25,24 @@ void trim(char * const a)
 	*p = '\0';
 	while (p > a && isspace(*--p))
 		*p = '\0';
+}
+
+void get_first_string(char *const str, char delimiter)
+{
+	char *delimiterPos;
+	if (str == NULL || *str == '\0')
+	{
+		printf("No valid input string provided.\n");
+		return;
+	}
+
+	delimiterPos = strchr(str, delimiter);
+
+	if (delimiterPos != NULL)
+	{
+		*delimiterPos = '\0';
+	}
+	else
+	{
+	}
 }

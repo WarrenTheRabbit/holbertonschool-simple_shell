@@ -42,9 +42,6 @@ void process_command(
 			if (!isatty(STDIN_FILENO))
 				exit(EXIT_SUCCESS);
 			break;
-		case BIN_COMMAND:
-			print_bin_command(args);
-			break;
 		default:
 			printf("unhandled case\n");
 			break;

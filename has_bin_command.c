@@ -17,8 +17,8 @@ int has_bin_command(char *str)
 	const char *command_path = "/bin";
 	char *PATH, cp_path[1024];
 	struct dirent *entry;
+    
 	DIR *dir_pointer;
-
 	PATH = getenv(key);
 	strcpy(cp_path, PATH);
 	token = strtok(cp_path, delimiter);
@@ -29,7 +29,7 @@ int has_bin_command(char *str)
 		{
 			while ((entry = readdir(dir_pointer)) != NULL)
 			{
-				if (strcmp(entry->d_name, str))
+				if (strcmp(entry->d_name, str) == 0)
 				{
 					closedir(dir_pointer);
 					return (1);
