@@ -56,7 +56,7 @@ void initialise_command_array(char *line, char *args[], int max_args)
 		if (arg_count > 1)
 		{
 			tmp = malloc(20);
-			strcpy(tmp, strdup(args[1]));
+			strcpy(tmp, args[1]);
 			args[1] = tmp;
 		}
 		strcpy(line, bin_command);
