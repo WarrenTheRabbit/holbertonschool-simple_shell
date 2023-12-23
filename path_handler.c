@@ -32,5 +32,6 @@ char *find_executable(const char *command)
 
 	free(cp_path);
 	free(first_string);
+	free(fullPath);
 	return (NULL); /* Return NULL if executable not found */
 }
