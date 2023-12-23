@@ -17,16 +17,30 @@ void initialise_command_array(char *line, char *args[], int max_args)
 {
 	int arg_count = 0;
 	char *token;
+	char *cp_line;
 
 	if (line == NULL)
 		return;
-	token = strtok(line, " ");
+	cp_line = strdup(line);
+	token = strtok(cp_line, " ");
 
-	while (token != NULL  && arg_count < max_args - 1)
+	while (token != NULL && arg_count < max_args - 1)
 	{
 		args[arg_count++] = token;
 		token = strtok(NULL, " ");
 	}
 	/* NULL terminate array for exec call. */
 	args[arg_count] = NULL;
+}
+
+void modify_command_array(char *line, char *args[])
+{
+	char *path;
+
+	path = find_executable(line);
+	if (path != NULL)
+	{
+		strcpy(line, path);
+		args[0] = path;
+	}
 }

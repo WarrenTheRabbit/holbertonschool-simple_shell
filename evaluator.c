@@ -87,7 +87,3 @@ int evaluate(char *str)
 		return (EXECUTABLE_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }
-
-
-
-

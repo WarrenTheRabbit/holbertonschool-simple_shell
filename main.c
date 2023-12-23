@@ -10,40 +10,40 @@
  * Return: The status of the command processing.
  */
 void process_command(
-		char *command,
-		char *args[],
-		InputBuffer *input_buffer,
-		int *exit_code)
+	char *command,
+	char *args[],
+	InputBuffer *input_buffer,
+	int *exit_code)
 {
 	int status = evaluate(command);
 
 	switch (status)
 	{
-		case EMPTY_INPUT:
-			break;
-		case EXIT_COMMAND:
-			close_input_buffer(input_buffer);
-			exit(*exit_code);
-			break;
-		case COMMAND_NOT_FOUND:
-			print_command_not_found_error(command);
-			break;
-		case ENV_COMMAND:
-			printenv_with_environ();
-			break;
-		case EOF_ENCOUNTERED:
-			close_input_buffer(input_buffer);
-			/* If a prompt was printed, print a newline. */
-			if (isatty(STDIN_FILENO))
-				printf("\n");
-			exit(*exit_code);
-			break;
-		case EXECUTABLE_COMMAND:
-			*exit_code = execute(args);
-			break;
-		default:
-			printf("unhandled case\n");
-			break;
+	case EMPTY_INPUT:
+		break;
+	case EXIT_COMMAND:
+		close_input_buffer(input_buffer);
+		exit(*exit_code);
+		break;
+	case COMMAND_NOT_FOUND:
+		print_command_not_found_error(command);
+		break;
+	case ENV_COMMAND:
+		printenv_with_environ();
+		break;
+	case EOF_ENCOUNTERED:
+		close_input_buffer(input_buffer);
+		/* If a prompt was printed, print a newline. */
+		if (isatty(STDIN_FILENO))
+			printf("\n");
+		exit(*exit_code);
+		break;
+	case EXECUTABLE_COMMAND:
+		*exit_code = execute(args);
+		break;
+	default:
+		printf("unhandled case\n");
+		break;
 	}
 }
 
@@ -69,6 +69,7 @@ int main(void)
 		command = readline(stream, input_buffer);
 		trim(command);
 		initialise_command_array(command, args, 1024);
+		modify_command_array(command, args);
 		process_command(command, args, input_buffer, &exit_code);
 	}
 	return (exit_code);
