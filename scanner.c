@@ -43,4 +43,8 @@ void modify_command_array(char *line, char *args[])
 		strcpy(line, path);
 		args[0] = path;
 	}
+	else
+	{
+		strcpy(line, args[0]);
+	}
 }
