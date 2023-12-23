@@ -24,6 +24,8 @@ void process_command(
 		break;
 	case EXIT_COMMAND:
 		close_input_buffer(input_buffer);
+		free(command);
+		free(args[0]);
 		free(cp_command);
 		exit(*exit_code);
 		break;
@@ -35,6 +37,8 @@ void process_command(
 		break;
 	case EOF_ENCOUNTERED:
 		close_input_buffer(input_buffer);
+		free(command);
+		free(args[0]);
 		free(cp_command);
 		/* If a prompt was printed, print a newline. */
 		if (isatty(STDIN_FILENO))

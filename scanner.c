@@ -29,6 +29,7 @@ void initialise_command_array(char *line, char *cp_line, char *args[], int max_a
 	}
 	/* NULL terminate array for exec call. */
 	args[arg_count] = NULL;
+	// free(cp_line);
 }
 
 void modify_command_array(char *line, char *args[])
