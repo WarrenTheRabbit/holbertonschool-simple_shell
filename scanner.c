@@ -13,15 +13,13 @@
  * arguments and ensures proper null termination for exec call.
  */
 
-void initialise_command_array(char *line, char *args[], int max_args)
+void initialise_command_array(char *line, char *cp_line, char *args[], int max_args)
 {
 	int arg_count = 0;
 	char *token;
-	char *cp_line;
 
 	if (line == NULL)
 		return;
-	cp_line = strdup(line);
 	token = strtok(cp_line, " ");
 
 	while (token != NULL && arg_count < max_args - 1)
