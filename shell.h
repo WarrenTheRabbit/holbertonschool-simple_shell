@@ -56,14 +56,15 @@ int is_executable(char *str);
 void initialise_command_array(char *line, char *cp_line, char *args[], int max_args);
 char *find_executable(const char *command);
 void get_first_string(char *const str, char delimiter);
-void modify_command_array(char *line, char *args[]);
+void modify_command_array(char *line, char *args[], int *memory_allocated);
 char *_getenv(const char *var_name);
 void process_command(
 		char *command,
 		char *cp_command,
 		char *args[],
 		InputBuffer *input_buffer,
-		int *exit_code
+		int *exit_code,
+		int *memory_allocated
 		);
 
 #endif /* SHELL_H */

@@ -29,18 +29,21 @@ void initialise_command_array(char *line, char *cp_line, char *args[], int max_a
 	}
 	/* NULL terminate array for exec call. */
 	args[arg_count] = NULL;
-	// free(cp_line);
 }
 
-void modify_command_array(char *line, char *args[])
+void modify_command_array(char *line, char *args[], int *memory_allocated)
 {
 	char *path;
+
+	if (line == NULL)
+		return;
 
 	path = find_executable(line);
 	if (path != NULL)
 	{
 		strcpy(line, path);
-		args[0] = path;
+		args[0] = path; /* need to free */
+		*memory_allocated = 1;
 	}
 	else
 	{

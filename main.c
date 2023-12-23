@@ -14,19 +14,21 @@ void process_command(
 	char *cp_command,
 	char *args[],
 	InputBuffer *input_buffer,
-	int *exit_code)
+	int *exit_code,
+	int *memory_allocated)
 {
 	int status = evaluate(command);
-
+	(void)cp_command;
 	switch (status)
 	{
 	case EMPTY_INPUT:
 		break;
 	case EXIT_COMMAND:
 		close_input_buffer(input_buffer);
-		free(command);
-		free(args[0]);
-		free(cp_command);
+		if (*memory_allocated)
+		{
+			free(args[0]);
+		}
 		exit(*exit_code);
 		break;
 	case COMMAND_NOT_FOUND:
@@ -37,9 +39,10 @@ void process_command(
 		break;
 	case EOF_ENCOUNTERED:
 		close_input_buffer(input_buffer);
-		free(command);
-		free(args[0]);
-		free(cp_command);
+		if (*memory_allocated)
+		{
+			free(args[0]);
+		}
 		/* If a prompt was printed, print a newline. */
 		if (isatty(STDIN_FILENO))
 			printf("\n");
@@ -47,11 +50,16 @@ void process_command(
 		break;
 	case EXECUTABLE_COMMAND:
 		*exit_code = execute(args);
+		if (*memory_allocated)
+		{
+			free(args[0]);
+		}
 		break;
 	default:
 		printf("unhandled case\n");
 		break;
 	}
+	*memory_allocated = 0;
 }
 
 /**
@@ -62,12 +70,12 @@ void process_command(
 int main(void)
 {
 	char *command;
-	char *cp_command;
+	char cp_command[128];
 	int exit_code = 0;
+	int memory_allocated = 0;
 	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
-
 	while (TRUE)
 	{
 		if (isatty(STDIN_FILENO))
@@ -76,10 +84,13 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		cp_command = strdup(command);
+		if (command)
+		{
+			strcpy(cp_command, command);
+		}
 		initialise_command_array(command, cp_command, args, 1024);
-		modify_command_array(command, args);
-		process_command(command, cp_command, args, input_buffer, &exit_code);
+		modify_command_array(command, args, &memory_allocated);
+		process_command(command, cp_command, args, input_buffer, &exit_code, &memory_allocated);
 	}
 	return (exit_code);
 }
