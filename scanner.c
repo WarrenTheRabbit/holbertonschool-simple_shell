@@ -47,6 +47,7 @@ void modify_command_array(char *line, char *args[], int *memory_allocated)
 	}
 	else
 	{
+		free(path);
 		strcpy(line, args[0]);
 	}
 }
