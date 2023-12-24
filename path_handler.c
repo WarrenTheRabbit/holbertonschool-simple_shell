@@ -23,12 +23,16 @@ char *find_executable(const char *command)
 	while (token != NULL)
 	{
 		snprintf(fullPath, 1024, "%s/%s", token, first_string);
-		// printf("FULL_PATH:%s", fullPath);
 		if (access(fullPath, X_OK) == 0)
 		{
 			free(cp_path);
 			free(first_string);
 			return (fullPath);
+		}
+		else
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", command);
+			return 127;
 		}
 
 		token = strtok(NULL, ":");
