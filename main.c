@@ -17,6 +17,7 @@ void process_command(
 	int *memory_allocated)
 {
 	int status = evaluate(command);
+
 	switch (status)
 	{
 	case EMPTY_INPUT:
