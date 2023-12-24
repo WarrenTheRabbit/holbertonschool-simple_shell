@@ -29,12 +29,6 @@ char *find_executable(const char *command)
 			free(first_string);
 			return (fullPath);
 		}
-		else
-		{
-			fprintf(stderr, "./hsh: 1: %s: not found\n", command);
-			return 127;
-		}
-
 		token = strtok(NULL, ":");
 	}
 
