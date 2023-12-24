@@ -13,6 +13,10 @@ char *find_executable(const char *command)
 	first_string = strdup(command);
 	get_first_string(first_string, ' ');
 	PATH = _getenv("PATH");
+	if (!PATH)
+	{
+		return (NULL);
+	}
 	cp_path = strdup(PATH);
 	fullPath = malloc(1024);
 	token = strtok(cp_path, ":");
