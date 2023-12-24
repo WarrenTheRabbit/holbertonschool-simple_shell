@@ -17,8 +17,6 @@ void process_command(
 	int *memory_allocated)
 {
 	int status = evaluate(command);
-	printf("STATUS%d", status);
-	printf("COMMAND%s", command);
 	switch (status)
 	{
 	case EMPTY_INPUT:
