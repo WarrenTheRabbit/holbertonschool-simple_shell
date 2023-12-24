@@ -19,22 +19,6 @@ int is_exit(char *str)
 }
 
 /**
- * is_env - Checks if the input string is "env".
- *
- * @str: The input string to check.
- *
- * Return: 1 if the string is "env", 0 otherwise.
- */
-int is_env(char *str)
-{
-	if (strcmp(str, "env") == 0)
-	{
-		return (1);
-	}
-	return (0);
-}
-
-/**
  * is_eof - Checks if the input string is NULL.
  *
  * @str: The input string to check.
@@ -79,8 +63,6 @@ int evaluate(char *str)
 		return (EMPTY_INPUT);
 	else if (is_exit(str))
 		return (EXIT_COMMAND);
-	else if (is_env(str))
-		return (ENV_COMMAND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))

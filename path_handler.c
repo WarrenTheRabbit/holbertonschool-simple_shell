@@ -23,7 +23,7 @@ char *find_executable(const char *command)
 	while (token != NULL)
 	{
 		snprintf(fullPath, 1024, "%s/%s", token, first_string);
-
+		// printf("FULL_PATH:%s", fullPath);
 		if (access(fullPath, X_OK) == 0)
 		{
 			free(cp_path);

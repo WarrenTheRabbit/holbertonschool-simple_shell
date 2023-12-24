@@ -11,6 +11,8 @@ int execute(char **args)
 {
 	int status;
 	pid_t pid;
+	extern char **environ;
+	char *is_env = strstr(args[0], "env");
 
 	pid = fork();
 
@@ -21,7 +23,7 @@ int execute(char **args)
 	else if (pid == 0)
 	{
 		/* Child process is executing. */
-		if (execve(args[0], args, NULL) == -1)
+		if (execve(args[0], args, is_env!=NULL?environ:NULL) == -1)
 		{
 			perror("execve");
 		}

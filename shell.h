@@ -14,7 +14,6 @@
 /* Shell status codes - these are returned by the evaluate stage of the REPL */
 #define EXIT_COMMAND 0
 #define COMMAND_NOT_FOUND 127
-#define ENV_COMMAND 10
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
