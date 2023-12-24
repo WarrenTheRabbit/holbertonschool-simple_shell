@@ -60,7 +60,6 @@ void modify_command_array(char *line, char *args[], int *memory_allocated);
 char *_getenv(const char *var_name);
 void process_command(
 		char *command,
-		char *cp_command,
 		char *args[],
 		InputBuffer *input_buffer,
 		int *exit_code,

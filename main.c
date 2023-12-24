@@ -11,14 +11,14 @@
  */
 void process_command(
 	char *command,
-	char *cp_command,
 	char *args[],
 	InputBuffer *input_buffer,
 	int *exit_code,
 	int *memory_allocated)
 {
 	int status = evaluate(command);
-	(void)cp_command;
+	printf("STATUS%d", status);
+	printf("COMMAND%s", command);
 	switch (status)
 	{
 	case EMPTY_INPUT:
@@ -90,7 +90,7 @@ int main(void)
 		}
 		initialise_command_array(command, cp_command, args, 1024);
 		modify_command_array(command, args, &memory_allocated);
-		process_command(command, cp_command, args, input_buffer, &exit_code, &memory_allocated);
+		process_command(command, args, input_buffer, &exit_code, &memory_allocated);
 	}
 	return (exit_code);
 }

@@ -34,9 +34,10 @@ void initialise_command_array(char *line, char *cp_line, char *args[], int max_a
 void modify_command_array(char *line, char *args[], int *memory_allocated)
 {
 	char *path;
-
-	if (line == NULL)
+	if (line == NULL || strlen(line) == 0)
+	{
 		return;
+	}
 
 	path = find_executable(line);
 	if (path != NULL)
