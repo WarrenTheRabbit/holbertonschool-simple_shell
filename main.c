@@ -33,6 +33,9 @@ void process_command(
 	case COMMAND_NOT_FOUND:
 		print_command_not_found_error(command);
 		break;
+	case ENV_COMMAND:
+		printenv_with_environ();
+		break;
 	case EOF_ENCOUNTERED:
 		close_input_buffer(input_buffer);
 		if (*memory_allocated)
