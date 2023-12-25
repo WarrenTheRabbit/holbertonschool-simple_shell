@@ -64,6 +64,15 @@ int is_empty(char *str)
 	return (0);
 }
 
+int is_not_found(char *str)
+{
+	if (access(str, X_OK) == 0)
+		{
+			return (0);
+		}
+	return (1);
+}
+
 /**
  * evaluate - Evaluates the input string and determines the command type.
  *
@@ -81,6 +90,8 @@ int evaluate(char *str)
 		return (EXIT_COMMAND);
 	else if (is_env(str))
 		return (ENV_COMMAND);
+	else if (is_not_found(str))
+		return (NOT_FOUND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))

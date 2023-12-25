@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <sys/param.h>
 
 /**
  * process_command - Process the given command and update the status and
@@ -32,6 +33,9 @@ void process_command(
 		break;
 	case COMMAND_NOT_FOUND:
 		print_command_not_found_error(command);
+		break;
+	case NOT_FOUND:
+		print_not_found_error(command);
 		break;
 	case ENV_COMMAND:
 		printenv_with_environ();

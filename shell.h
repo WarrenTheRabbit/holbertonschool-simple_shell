@@ -18,6 +18,7 @@
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
+#define NOT_FOUND 2
 
 extern char **environ;
 
@@ -57,6 +58,7 @@ void initialise_command_array(char *line, char *cp_line, char *args[], int max_a
 char *find_executable(const char *command);
 void get_first_string(char *const str, char delimiter);
 void modify_command_array(char *line, char *args[], int *memory_allocated);
+void print_not_found_error(char *str);
 char *_getenv(const char *var_name);
 void process_command(
 		char *command,
