@@ -36,6 +36,7 @@ void process_command(
 		break;
 	case NOT_FOUND:
 		print_not_found_error(command);
+		*exit_code = COMMAND_NOT_FOUND;
 		break;
 	case ENV_COMMAND:
 		printenv_with_environ();
