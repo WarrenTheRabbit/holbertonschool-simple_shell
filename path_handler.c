@@ -12,13 +12,13 @@ char *find_executable(const char *command)
 
 	first_string = strdup(command);
 	get_first_string(first_string, ' ');
-	PATH = _getenv("PATH");
+	PATH = getenv("PATH");
 	if (!PATH)
 	{
 		return (NULL);
 	}
 	cp_path = strdup(PATH);
-	fullPath = malloc(1024);
+	fullPath = malloc(1024); /* need to free */
 	token = strtok(cp_path, ":");
 	while (token != NULL)
 	{
@@ -31,7 +31,6 @@ char *find_executable(const char *command)
 		}
 		token = strtok(NULL, ":");
 	}
-
 	free(cp_path);
 	free(first_string);
 	free(fullPath);
