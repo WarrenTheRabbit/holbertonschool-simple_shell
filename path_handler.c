@@ -15,10 +15,15 @@ char *find_executable(const char *command)
 	PATH = getenv("PATH");
 	if (!PATH)
 	{
+		free(first_string);
 		return (NULL);
 	}
-	cp_path = strdup(PATH);
 	fullPath = malloc(1024); /* need to free */
+	if (!fullPath) {
+        free(first_string);
+        return NULL;
+    }
+	cp_path = strdup(PATH);
 	token = strtok(cp_path, ":");
 	while (token != NULL)
 	{

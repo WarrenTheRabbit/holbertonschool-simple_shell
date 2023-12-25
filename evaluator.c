@@ -69,10 +69,6 @@ int is_not_found(char *str)
 	{
 		return (0);
 	}
-	if (strstr(str, "hbtn_ls") != NULL)
-	{
-		return (0);
-	}
 	return (1);
 }
 
