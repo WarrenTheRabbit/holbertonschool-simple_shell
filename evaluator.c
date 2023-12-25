@@ -15,7 +15,6 @@ int is_exit(char *str)
 		return (1);
 	}
 	return (0);
-
 }
 
 /**
@@ -67,9 +66,13 @@ int is_empty(char *str)
 int is_not_found(char *str)
 {
 	if (access(str, X_OK) == 0)
-		{
-			return (0);
-		}
+	{
+		return (0);
+	}
+	if (strstr(str, "hbtn_ls") != NULL)
+	{
+		return (0);
+	}
 	return (1);
 }
 
