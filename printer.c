@@ -27,7 +27,7 @@ void print_not_found_error(char *str)
 {
 	extern char *__progname;
 
-	printf("./%s: 1: %s: not found\n", __progname, str);
+	fprintf(stderr,"./%s: 1: %s: not found\n", __progname, str);
 }
 
 /**
