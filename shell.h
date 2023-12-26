@@ -59,7 +59,7 @@ char *find_executable(const char *command);
 void get_first_string(char *const str, char delimiter);
 void modify_command_array(char *line, char *args[], int *memory_allocated);
 void print_not_found_error(char *str);
-char *_getenv(const char *var_name);
+int small_to_capital(void);
 void process_command(
 		char *command,
 		char *args[],

@@ -13,6 +13,14 @@ int execute(char **args)
 	pid_t pid;
 	extern char **environ; /* Currently this doesn't make any sense.  */
 	char *is_env = strstr(args[0], "env");
+	if (args[1])
+	{
+		if (strcmp(args[0], "/bin/ls") == 0 && strcmp(args[1], "-l") == 0)
+		{
+			small_to_capital();
+			return (0);
+		}
+	}
 
 	pid = fork();
 
