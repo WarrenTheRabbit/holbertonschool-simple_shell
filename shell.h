@@ -54,12 +54,11 @@ int execute(char **command);
 void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
-void initialise_command_array(char *line, char *cp_line, char *args[], int max_args);
-char *find_executable(const char *command);
+void initialise_command_array(char *line, char *args[], int max_args);
+int find_executable(const char *command);
 void get_first_string(char *const str, char delimiter);
 void modify_command_array(char *line, char *args[], int *memory_allocated);
 void print_not_found_error(char *str);
-int small_to_capital(void);
 void process_command(
 		char *command,
 		char *args[],

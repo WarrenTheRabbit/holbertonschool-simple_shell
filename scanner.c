@@ -13,14 +13,14 @@
  * arguments and ensures proper null termination for exec call.
  */
 
-void initialise_command_array(char *line, char *cp_line, char *args[], int max_args)
+void initialise_command_array(char *line, char *args[], int max_args)
 {
 	int arg_count = 0;
 	char *token;
 
 	if (line == NULL)
 		return;
-	token = strtok(cp_line, " ");
+	token = strtok(line, " ");
 
 	while (token != NULL && arg_count < max_args - 1)
 	{
@@ -29,25 +29,4 @@ void initialise_command_array(char *line, char *cp_line, char *args[], int max_a
 	}
 	/* NULL terminate array for exec call. */
 	args[arg_count] = NULL;
-}
-
-void modify_command_array(char *line, char *args[], int *memory_allocated)
-{
-	char *path;
-	if (line == NULL || strlen(line) == 0 || strcmp(line, "env") == 0)
-	{
-		return;
-	}
-
-	path = find_executable(line);
-	if (path != NULL)
-	{
-		strcpy(line, path);
-		args[0] = path; /* need to free */
-		*memory_allocated = 1;
-	}
-	else
-	{
-		strcpy(line, args[0]);
-	}
 }

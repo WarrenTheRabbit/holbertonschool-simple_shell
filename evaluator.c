@@ -65,9 +65,9 @@ int is_empty(char *str)
 
 int is_not_found(char *str)
 {
-	if (access(str, X_OK) == 0)
+	if (find_executable(str))
 	{
-		return (0);
+		return (2);
 	}
 	return (1);
 }
@@ -81,6 +81,11 @@ int is_not_found(char *str)
  */
 int evaluate(char *str)
 {
+	int i;
+	if (str)
+	{
+		i = is_not_found(str);
+	}
 	if (is_eof(str)) /*Must guard against NULL first with this check */
 		return (EOF_ENCOUNTERED);
 	else if (is_empty(str))
@@ -89,11 +94,13 @@ int evaluate(char *str)
 		return (EXIT_COMMAND);
 	else if (is_env(str))
 		return (ENV_COMMAND);
-	else if (is_not_found(str))
-		return (NOT_FOUND);
 	else if (is_eof(str))
 		return (EOF_ENCOUNTERED);
 	else if (is_executable(str))
+		return (EXECUTABLE_COMMAND);
+	else if (i == 1)
+		return (NOT_FOUND);
+	else if (i == 2)
 		return (EXECUTABLE_COMMAND);
 	return (COMMAND_NOT_FOUND);
 }

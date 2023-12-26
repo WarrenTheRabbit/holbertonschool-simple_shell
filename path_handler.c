@@ -2,7 +2,7 @@
 
 /* return fill path*/
 
-char *find_executable(const char *command)
+int find_executable(const char *command)
 {
 	char *PATH;
 	char *fullPath;
@@ -16,12 +16,12 @@ char *find_executable(const char *command)
 	if (!PATH)
 	{
 		free(first_string);
-		return (NULL);
+		return (0);
 	}
 	fullPath = malloc(1024); /* need to free */
 	if (!fullPath) {
         free(first_string);
-        return NULL;
+        return 0;
     }
 	cp_path = strdup(PATH);
 	token = strtok(cp_path, ":");
@@ -32,12 +32,12 @@ char *find_executable(const char *command)
 		{
 			free(cp_path);
 			free(first_string);
-			return (fullPath);
+			return (1);
 		}
 		token = strtok(NULL, ":");
 	}
 	free(cp_path);
 	free(first_string);
 	free(fullPath);
-	return (NULL); /* Return NULL if executable not found */
+	return (0); /* Return NULL if executable not found */
 }

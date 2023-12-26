@@ -73,7 +73,7 @@ void process_command(
 int main(void)
 {
 	char *command;
-	char cp_command[128];
+	/*char cp_command[128];*/
 	int exit_code = 0;
 	int memory_allocated = 0;
 	char *args[1024];
@@ -88,12 +88,13 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		if (command)
+		/*if (command)
 		{
 			strcpy(cp_command, command);
 		}
-		initialise_command_array(command, cp_command, args, 1024);
-		modify_command_array(command, args, &memory_allocated);
+		*/
+		initialise_command_array(command, args, 1024);
+		/*modify_command_array(command, args, &memory_allocated);*/
 		process_command(command, args, input_buffer, &exit_code, &memory_allocated);
 	}
 	return (exit_code);

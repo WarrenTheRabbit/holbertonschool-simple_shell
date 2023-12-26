@@ -21,7 +21,6 @@ int execute(char **args)
 			return (0);
 		}
 	}
-
 	pid = fork();
 
 	if (pid == -1)
@@ -30,10 +29,17 @@ int execute(char **args)
 	}
 	else if (pid == 0)
 	{
-		/* Child process is executing. */
-		if (execve(args[0], args, is_env != NULL ? environ : NULL) == -1)
+		if (find_executable(args[0]))
 		{
-			perror("execve");
+			execvp(args[0], args);
+		}
+		else
+		{
+			/* Child process is executing. */
+			if (execve(args[0], args, is_env != NULL ? environ : NULL) == -1)
+			{
+				perror("execve");
+			}
 		}
 	}
 	waitpid(pid, &status, 0);
