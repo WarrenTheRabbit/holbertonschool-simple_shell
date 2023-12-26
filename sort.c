@@ -5,7 +5,6 @@ int compare(const void *a, const void *b) {
     const char *file_a = *(const char **)a;
     const char *file_b = *(const char **)b;
 
-    // Find the start of the filename by finding the last space in the string
     const char *filename_a = strrchr(file_a, ' ');
     const char *filename_b = strrchr(file_b, ' ');
 
@@ -14,7 +13,6 @@ int compare(const void *a, const void *b) {
         exit(EXIT_FAILURE);
     }
 
-    // Skip the space to start comparing the filenames
     filename_a++;
     filename_b++;
 
@@ -47,12 +45,12 @@ int small_to_capital(void)
         line_count++;
     }
 
-    qsort(lines, line_count, sizeof(char *), compare); // Sort lines case-insensitively
+    qsort(lines, line_count, sizeof(char *), compare);
 
     for (i = 0; i < line_count; i++)
     {
-        printf("%s", lines[i]); // Print sorted output
-        free(lines[i]);         // Free memory allocated by strdup
+        printf("%s", lines[i]);
+        free(lines[i]);
     }
 
     free(lines);
