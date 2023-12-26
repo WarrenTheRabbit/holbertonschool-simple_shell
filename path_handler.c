@@ -32,6 +32,7 @@ int find_executable(const char *command)
 		{
 			free(cp_path);
 			free(first_string);
+			free(fullPath);
 			return (1);
 		}
 		token = strtok(NULL, ":");
