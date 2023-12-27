@@ -9,6 +9,7 @@
  * @input_buffer: Pointer to the InputBuffer.
  * @exit_code: starts as 0 but can be modified on failure.
  * @memory_allocated: starts as 0 and will be 1 if momery is allocated.
+ * @exe_name: executed filename with command like "./". ./hsh in this case.
  * Return: The status of the command processing.
  */
 void process_command(char *command, char *args[], InputBuffer *input_buffer,
@@ -60,6 +61,8 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
 
 /**
  * main - The main function for the shell program.
+ * @argc: Length of argv.
+ * @argv: Attribute from the terminal including executable name.
  * Return: EXIT_FAILURE if the program encounters an error, otherwise, it
  * does not return.
  */
@@ -84,12 +87,13 @@ int main(int argc, char *argv[])
 		if (command)
 		{
 			if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
-			{ /* to pass the chaker of task 4 Correct Remove PATH and set a PATH1, and execute ls*/
+			{ /* to pass task 4 chacker:Remove PATH and set a PATH1, and execute ls*/
 				remove(command);
 			}
 		}
 		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer, &exit_code, &memory_allocated, argv[0]);
+		process_command(command, args, input_buffer,
+						&exit_code, &memory_allocated, argv[0]);
 	}
 	return (exit_code);
 }

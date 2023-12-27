@@ -21,6 +21,7 @@ void print_command_not_found_error(char *str)
 /**
  * print_not_found_error - Prints an error message for a command not found.
  * @str: The command that was not found.
+ * @exe_name: executed filename with command like "./". ./hsh in this case.
  */
 void print_not_found_error(char *str, char *exe_name)
 {
