@@ -1,7 +1,5 @@
 #include "shell.h"
 
-/* return fill path*/
-
 int find_executable(const char *command)
 {
 	char *PATH;

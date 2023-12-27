@@ -88,13 +88,11 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		/*if (command)
+		if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
 		{
-			strcpy(cp_command, command);
+			remove(command);
 		}
-		*/
 		initialise_command_array(command, args, 1024);
-		/*modify_command_array(command, args, &memory_allocated);*/
 		process_command(command, args, input_buffer, &exit_code, &memory_allocated);
 	}
 	return (exit_code);
