@@ -64,7 +64,6 @@ void process_command(
 		char *args[],
 		InputBuffer *input_buffer,
 		int *exit_code,
-		int *memory_allocated,
 		char *exe_name
 		);
 int is_exit(char *str);

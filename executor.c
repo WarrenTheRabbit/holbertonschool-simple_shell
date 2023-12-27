@@ -32,6 +32,7 @@ int execute(char **args)
 		{
 			/* to pass the checker of task 4 "Correct output - case: Execute ls -l"*/
 			execvp(args[0], args);
+			perror("execvp");
 		}
 		else
 		{

@@ -8,13 +8,11 @@
  * @args: The array of arguments for the command.
  * @input_buffer: Pointer to the InputBuffer.
  * @exit_code: starts as 0 but can be modified on failure.
- * @memory_allocated: starts as 0 and will be 1 if momery is allocated.
  * @exe_name: executed filename with command like "./". ./hsh in this case.
  * Return: The status of the command processing.
  */
 void process_command(char *command, char *args[], InputBuffer *input_buffer,
 					 int *exit_code,
-					 int *memory_allocated,
 					 char *exe_name)
 {
 	int status = evaluate(command);
@@ -25,8 +23,6 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
 		break;
 	case EXIT_COMMAND:
 		close_input_buffer(input_buffer);
-		if (*memory_allocated)
-			free(args[0]);
 		exit(*exit_code);
 		break;
 	case COMMAND_NOT_FOUND:
@@ -41,22 +37,17 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
 		break;
 	case EOF_ENCOUNTERED:
 		close_input_buffer(input_buffer);
-		if (*memory_allocated)
-			free(args[0]);
 		if (isatty(STDIN_FILENO))
 			printf("\n"); /* If a prompt was printed, print a newline. */
 		exit(*exit_code);
 		break;
 	case EXECUTABLE_COMMAND:
 		*exit_code = execute(args);
-		if (*memory_allocated)
-			free(args[0]);
 		break;
 	default:
 		printf("unhandled case\n");
 		break;
 	}
-	*memory_allocated = 0;
 }
 
 /**
@@ -70,7 +61,6 @@ int main(int argc, char *argv[])
 {
 	char *command;
 	int exit_code = 0;
-	int memory_allocated = 0;
 	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
@@ -92,8 +82,7 @@ int main(int argc, char *argv[])
 			}
 		}
 		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer,
-						&exit_code, &memory_allocated, argv[0]);
+		process_command(command, args, input_buffer, &exit_code, argv[0]);
 	}
 	return (exit_code);
 }

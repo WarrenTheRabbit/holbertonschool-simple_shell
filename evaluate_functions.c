@@ -64,7 +64,7 @@ int is_empty(char *str)
 }
 
 /**
- * is_not_found - Checks if the input string is executable.
+ * is_not_found - Checks if the filename is executable via PATH env.
  *
  * @str: The input string to check.
  *
