@@ -88,9 +88,12 @@ int main(void)
 		}
 		command = readline(stream, input_buffer);
 		trim(command);
-		if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
+		if (command)
 		{
-			remove(command);
+			if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
+			{
+				remove(command);
+			}
 		}
 		initialise_command_array(command, args, 1024);
 		process_command(command, args, input_buffer, &exit_code, &memory_allocated);
