@@ -19,15 +19,14 @@ void print_command_not_found_error(char *str)
 }
 
 /**
- * print_not_found_error - Prints an error message for a command
- * not found.
+ * print_not_found_error - Prints an error message for a command not found.
  * @str: The command that was not found.
  */
 void print_not_found_error(char *str)
 {
-	extern char *__progname;
+	char *__progname;
 
-	fprintf(stderr,"./%s: 1: %s: not found\n", __progname, str);
+	fprintf(stderr, "./%s: 1: %s: not found\n", __progname, str);
 }
 
 /**

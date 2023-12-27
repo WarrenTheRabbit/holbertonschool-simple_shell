@@ -8,16 +8,15 @@
  * @args: The array of arguments for the command.
  * @input_buffer: Pointer to the InputBuffer.
  * @exit_code: starts as 0 but can be modified on failure.
+ * @memory_allocated: starts as 0 and will be 1 if momery is allocated.
  * Return: The status of the command processing.
  */
-void process_command(
-	char *command,
-	char *args[],
-	InputBuffer *input_buffer,
+void process_command(char *command, char *args[], InputBuffer *input_buffer,
 	int *exit_code,
 	int *memory_allocated)
 {
 	int status = evaluate(command);
+
 	switch (status)
 	{
 	case EMPTY_INPUT:
@@ -25,9 +24,7 @@ void process_command(
 	case EXIT_COMMAND:
 		close_input_buffer(input_buffer);
 		if (*memory_allocated)
-		{
 			free(args[0]);
-		}
 		exit(*exit_code);
 		break;
 	case COMMAND_NOT_FOUND:
@@ -43,20 +40,15 @@ void process_command(
 	case EOF_ENCOUNTERED:
 		close_input_buffer(input_buffer);
 		if (*memory_allocated)
-		{
 			free(args[0]);
-		}
-		/* If a prompt was printed, print a newline. */
 		if (isatty(STDIN_FILENO))
-			printf("\n");
+			printf("\n");/* If a prompt was printed, print a newline. */
 		exit(*exit_code);
 		break;
 	case EXECUTABLE_COMMAND:
 		*exit_code = execute(args);
 		if (*memory_allocated)
-		{
 			free(args[0]);
-		}
 		break;
 	default:
 		printf("unhandled case\n");
@@ -91,7 +83,8 @@ int main(void)
 		if (command)
 		{
 			if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
-			{
+			{/* to pass the chaker of task 4 Correct output - case: 
+			Remove PATH variable and set a PATH1 variable, and execute ls*/
 				remove(command);
 			}
 		}

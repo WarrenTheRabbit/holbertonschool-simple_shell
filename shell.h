@@ -66,5 +66,10 @@ void process_command(
 		int *exit_code,
 		int *memory_allocated
 		);
+int is_exit(char *str);
+int is_env(char *str);
+int is_eof(char *str);
+int is_empty(char *str);
+int is_not_found(char *str);
 
 #endif /* SHELL_H */

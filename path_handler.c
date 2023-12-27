@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * find_executable - Checks if filename is in executable via PATH env.
+ *
+ * @command: The input string(filename) to check.
+ *
+ * Return: 1 if executable is found, 0 otherwise.
+ */
+
 int find_executable(const char *command)
 {
 	char *PATH;
@@ -17,10 +25,11 @@ int find_executable(const char *command)
 		return (0);
 	}
 	fullPath = malloc(1024); /* need to free */
-	if (!fullPath) {
-        free(first_string);
-        return 0;
-    }
+	if (!fullPath)
+	{
+		free(first_string);
+		return (0);
+	}
 	cp_path = strdup(PATH);
 	token = strtok(cp_path, ":");
 	while (token != NULL)
@@ -31,7 +40,7 @@ int find_executable(const char *command)
 			free(cp_path);
 			free(first_string);
 			free(fullPath);
-			return (1);
+			return (1); /* executable found */
 		}
 		token = strtok(NULL, ":");
 	}

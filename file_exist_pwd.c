@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * file_exist_pwd - Checks if the input filename exist in PWD.
+ *
+ * @str: The input string to check.
+ *
+ * Return: 1 if the input filename exist, 0 otherwise.
+ */
+
 int file_exist_pwd(char *file)
 {
 	const char *filename = file;
