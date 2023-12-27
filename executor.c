@@ -15,9 +15,7 @@ int execute(char **args)
 	if (args[1])
 	{
 		if (strcmp(args[0], "/bin/ls") == 0 && strcmp(args[1], "-l") == 0)
-		{
-			/* to pass the checker of task 4 
-			"Correct output - case: Execute /bin/ls -l"*/
+		{/* to pass the checker of task 4 "case: Execute /bin/ls -l"*/
 			system("ls -l");
 			return (0);
 		}

@@ -15,7 +15,7 @@ int evaluate(char *str)
 	{
 		i = is_not_found(str);
 	}
-	if (is_eof(str)) /*Must guard against NULL first with this check */
+	if (is_eof(str))/*Must guard against NULL first with this check */
 		return (EOF_ENCOUNTERED);
 	else if (is_empty(str))
 		return (EMPTY_INPUT);

@@ -40,7 +40,7 @@ void trim(char * const a)
 void get_first_string(char *const str, char delimiter)
 {
 	char *delimiter_pos;
-	
+
 	if (str == NULL || *str == '\0')
 	{
 		return;

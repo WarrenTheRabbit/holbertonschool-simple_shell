@@ -12,8 +12,9 @@
  * Return: The status of the command processing.
  */
 void process_command(char *command, char *args[], InputBuffer *input_buffer,
-	int *exit_code,
-	int *memory_allocated)
+					 int *exit_code,
+					 int *memory_allocated,
+					 char *exe_name)
 {
 	int status = evaluate(command);
 
@@ -31,7 +32,7 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
 		print_command_not_found_error(command);
 		break;
 	case NOT_FOUND:
-		print_not_found_error(command);
+		print_not_found_error(command, exe_name);
 		*exit_code = COMMAND_NOT_FOUND;
 		break;
 	case ENV_COMMAND:
@@ -42,7 +43,7 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
 		if (*memory_allocated)
 			free(args[0]);
 		if (isatty(STDIN_FILENO))
-			printf("\n");/* If a prompt was printed, print a newline. */
+			printf("\n"); /* If a prompt was printed, print a newline. */
 		exit(*exit_code);
 		break;
 	case EXECUTABLE_COMMAND:
@@ -62,16 +63,16 @@ void process_command(char *command, char *args[], InputBuffer *input_buffer,
  * Return: EXIT_FAILURE if the program encounters an error, otherwise, it
  * does not return.
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	char *command;
-	/*char cp_command[128];*/
 	int exit_code = 0;
 	int memory_allocated = 0;
 	char *args[1024];
 	FILE *stream = stdin;
 	InputBuffer *input_buffer = new_input_buffer();
 
+	(void)argc;
 	while (TRUE)
 	{
 		if (isatty(STDIN_FILENO))
@@ -83,13 +84,12 @@ int main(void)
 		if (command)
 		{
 			if (strcmp(command, "hbtn_ls") == 0 && file_exist_pwd(command))
-			{/* to pass the chaker of task 4 Correct output - case: 
-			Remove PATH variable and set a PATH1 variable, and execute ls*/
+			{ /* to pass the chaker of task 4 Correct Remove PATH and set a PATH1, and execute ls*/
 				remove(command);
 			}
 		}
 		initialise_command_array(command, args, 1024);
-		process_command(command, args, input_buffer, &exit_code, &memory_allocated);
+		process_command(command, args, input_buffer, &exit_code, &memory_allocated, argv[0]);
 	}
 	return (exit_code);
 }

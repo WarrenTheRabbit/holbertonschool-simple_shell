@@ -58,13 +58,14 @@ void initialise_command_array(char *line, char *args[], int max_args);
 int find_executable(const char *command);
 void get_first_string(char *const str, char delimiter);
 int file_exist_pwd(char *file);
-void print_not_found_error(char *str);
+void print_not_found_error(char *str, char *exe_name);
 void process_command(
 		char *command,
 		char *args[],
 		InputBuffer *input_buffer,
 		int *exit_code,
-		int *memory_allocated
+		int *memory_allocated,
+		char *exe_name
 		);
 int is_exit(char *str);
 int is_env(char *str);
