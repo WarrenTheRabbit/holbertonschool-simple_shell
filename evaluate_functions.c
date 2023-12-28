@@ -68,7 +68,7 @@ int is_empty(char *str)
  *
  * @str: The input string to check.
  *
- * Return: 1 if the string is not executable, 2 otherwise.
+ * Return: 1 if the filename is not executable, 2 otherwise.
  */
 int is_not_found(char *str)
 {

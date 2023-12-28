@@ -16,46 +16,16 @@
 void initialise_command_array(char *line, char *args[], int max_args)
 {
 	int arg_count = 0;
-	char *token, *first_string = strdup(line);
-	int is_bin;
-	char *bin_command;
-	int hit_bin_command = 0;
-	char *tmp;
+	char *token;
 
 	if (line == NULL)
 		return;
+	token = strtok(line, " ");
 
 	while (token != NULL && arg_count < max_args - 1)
 	{
-		if (arg_count == 0 && is_bin)
-		{
-			bin_command = malloc(strlen("/bin/") + strlen(token) + 1);
-			if (bin_command == NULL)
-			{
-				free(first_string);
-				return;
-			}
-			snprintf(bin_command, strlen("/bin/") + strlen(token) + 1, "%s%s", "/bin/", token);
-			args[arg_count++] = bin_command;
-			hit_bin_command = 1;
-		}
-		else
-		{
-			args[arg_count++] = token;
-		}
-
+		args[arg_count++] = token;
 		token = strtok(NULL, " ");
-	}
-	free(first_string);
-	if (hit_bin_command)
-	{
-		if (arg_count > 1)
-		{
-			tmp = malloc(20);
-			strcpy(tmp, args[1]);
-			args[1] = tmp;
-		}
-		strcpy(line, bin_command);
 	}
 	/* NULL terminate array for exec call. */
 	args[arg_count] = NULL;
