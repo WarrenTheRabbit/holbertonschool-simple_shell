@@ -40,7 +40,6 @@ int is_env(char *str)
  *
  * Return: 1 if the string is NULL, 0 otherwise.
  */
-
 int is_eof(char *str)
 {
 	if (!str)
@@ -65,35 +64,17 @@ int is_empty(char *str)
 }
 
 /**
- * evaluate - Evaluates the input string and determines the command type.
+ * is_not_found - Checks if the filename is executable via PATH env.
  *
- * @str: The input string to evaluate.
+ * @str: The input string to check.
  *
- * Return: The command type based on the evaluation.
+ * Return: 1 if the string is not executable, 2 otherwise.
  */
-int evaluate(char *str)
+int is_not_found(char *str)
 {
-	int i;
-
-	if (str)
+	if (find_executable(str))
 	{
-		i = is_not_found(str);
+		return (2);
 	}
-	if (is_eof(str))/*Must guard against NULL first with this check */
-		return (EOF_ENCOUNTERED);
-	else if (is_empty(str))
-		return (EMPTY_INPUT);
-	else if (is_exit(str))
-		return (EXIT_COMMAND);
-	else if (is_env(str))
-		return (ENV_COMMAND);
-	else if (is_eof(str))
-		return (EOF_ENCOUNTERED);
-	else if (is_executable(str))
-		return (EXECUTABLE_COMMAND);
-	else if (i == 1)
-		return (NOT_FOUND);
-	else if (i == 2)
-		return (EXECUTABLE_COMMAND);
-	return (COMMAND_NOT_FOUND);
+	return (1);
 }

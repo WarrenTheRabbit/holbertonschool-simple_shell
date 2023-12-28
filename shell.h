@@ -19,7 +19,7 @@
 #define EOF_ENCOUNTERED -1
 #define EXECUTABLE_COMMAND 1
 #define EMPTY_INPUT 3
-#define BIN_COMMAND 4
+#define NOT_FOUND 2
 
 extern char **environ;
 
@@ -56,13 +56,21 @@ void trim(char * const string);
 void parse(char *command);
 int is_executable(char *str);
 void initialise_command_array(char *line, char *args[], int max_args);
+int find_executable(const char *command);
+void get_first_string(char *const str, char delimiter);
+int file_exist_pwd(char *file);
+void print_not_found_error(char *str, char *exe_name);
 void process_command(
 		char *command,
 		char *args[],
 		InputBuffer *input_buffer,
-		int *exit_code
+		int *exit_code,
+		char *exe_name
 		);
-void get_first_string(char *const str, char delimiter);
-int has_bin_command(char *str);
+int is_exit(char *str);
+int is_env(char *str);
+int is_eof(char *str);
+int is_empty(char *str);
+int is_not_found(char *str);
 
 #endif /* SHELL_H */

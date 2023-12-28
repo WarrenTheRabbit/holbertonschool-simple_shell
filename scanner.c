@@ -25,10 +25,6 @@ void initialise_command_array(char *line, char *args[], int max_args)
 	if (line == NULL)
 		return;
 
-	get_first_string(first_string, ' ');
-	is_bin = has_bin_command(first_string);
-	bin_command = NULL;
-	token = strtok(line, " ");
 	while (token != NULL && arg_count < max_args - 1)
 	{
 		if (arg_count == 0 && is_bin)

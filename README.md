@@ -22,6 +22,10 @@ The Simple Shell project aims to create a basic command-line interpreter that mi
 
 ## Flowchart :chart:
 
+Below is a flowchart showing the basic implementation of how our hsh shell works.
+
+![flowchart](https://github.com/WarrenTheRabbit/holbertonschool-simple_shell/blob/main/flowchart.png)
+
 ## File Structure :building_construction:
 
 This table give a brief description of the files used for the simple shell to work, click on the names to get the source code.

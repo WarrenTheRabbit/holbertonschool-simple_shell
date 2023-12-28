@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * is_executable - Checks if a file is executable.
+ * is_executable - Checks if a full_path file is executable without PATH env.
  *
  * @str: The path to the file.
  *
