@@ -47,6 +47,7 @@ char *readline(FILE *stream, InputBuffer *input_buffer)
 			);
 	if (bytes_read == -1)
 	{
+		close_input_buffer(input_buffer);
 		exit(EXIT_SUCCESS);
 	}
 	/* Discard the trailing newline by replacing it with null character. */
