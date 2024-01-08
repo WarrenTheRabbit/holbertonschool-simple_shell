@@ -23,8 +23,10 @@ The Simple Shell project aims to create a basic command-line interpreter that mi
 ## Flowchart :chart:
 
 Below is a flowchart showing the basic implementation of how our hsh shell works.
+<br>
+It is available in [`Miro board`](https://github.com/WarrenTheRabbit/holbertonschool-simple_shell/blob/main/shell.h)
 
-![flowchart](https://github.com/WarrenTheRabbit/holbertonschool-simple_shell/blob/main/flowchart.png)
+![flowchart](https://github.com/WarrenTheRabbit/holbertonschool-simple_shell/blob/main/new_flowchart.png)
 
 ## File Structure :building_construction:
 
